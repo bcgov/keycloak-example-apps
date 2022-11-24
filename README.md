@@ -12,8 +12,6 @@ use our our self-service [webapp](https://bcgov.github.io/sso-requests/) to crea
 
 The `./examples` folder contains example apps that make use of public and confidential clients. As of now only OpenID connect clients are supported and all the example apps are written in javascript
 
-[Demonstration of using example apps](https://user-images.githubusercontent.com/37274633/136239765-97cf3c91-eb22-4f42-b682-b4cb0e619cfc.mp4)
-
 ### Public
 
 We have two example apps, which are single-page applications (SPAs) written using `react` and `vue` and are placed under `./examples/oidc/public` folder. To run these example apps, you will need a public keycloak client. Each example app folder consists of a `README.md` file that enlists all the instructions to run the app
