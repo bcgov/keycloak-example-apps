@@ -10,47 +10,14 @@ use our our self-service [webapp](https://bcgov.github.io/sso-requests/) to crea
 
 ## Examples
 
+The `./examples` folder contains example apps that make use of public and confidential clients. As of now only OpenID connect clients are supported and all the example apps are written in javascript
+
 [Demonstration of using example apps](https://user-images.githubusercontent.com/37274633/136239765-97cf3c91-eb22-4f42-b682-b4cb0e619cfc.mp4)
 
-### public-nextjs
+### Public
 
-This is an example application setup to use a frontend single-page application(SPA)
-with a backend API. To run this example, you will need a public keycloak client you can use.
-Copy the installation JSON for your client into `public/keycloak.json`. To run locally
-ensure that your client allows `http://localhost:3000` as a valid
-redirect URI. Then from `examples/nextjs-example`:
+We have two example apps, which are single-page applications (SPAs) written using `react` and `vue` and are placed under `./examples/oidc/public` folder. To run these example apps, you will need a public keycloak client. Each example app folder consists of a `README.md` file that enlists all the instructions to run the app
 
-- **Build Image**: `docker build -t kc-demo .`
-- **Run Image**: `docker run -p 3000:3000 kc-demo`
+### Confidential
 
-Visit `localhost:3000` on your machine to test it out.
-
-### Confidential-express
-
-This is an example express app with a confidential client. To run this example,
-you will need a confidential keycloak client you can use. If you have generated one with
-our self-service [webapp](https://bcgov.github.io/sso-requests/), copy the
-installation json you receive into `keycloak.json`. To run locally
-ensure that your client allows `http://localhost:3000` as a valid
-redirect URI. Then from `examples/nextjs-example`:
-
-- **Build Image**: `docker build -t kc-demo .`
-- **Run Image**: `docker run -p 3000:3000 kc-demo`
-
-Visit `localhost:3000` on your machine to test it out.
-
-### public-fastAPI
-
-An example python API written in fastAPI, with a vuejs SPA frontend. The fastAPI backend
-uses [pyjwt](https://pyjwt.readthedocs.io/en/latest/) as an example of fetching the
-json web key from the `.well-known` endpoint and using it to verify a tokens signature.
-
-To run this example, you will need a public keycloak client you can use. If you have generated one with
-our self-service [webapp](https://bcgov.github.io/sso-requests/), copy the
-installation json you receive into `services/frontend/public/keycloak.json`. To run locally
-ensure that your client allows `http://localhost:3000` as a valid
-redirect URI. Then from `examples/nextjs-example`:
-
-- **Run**: `docker-compose up`
-
-Visit `localhost:3000` on your machine to test it out.
+We have one example app written using `nodejs` and `express`, which is placed under `./examples/oidc/confidential` folder. This is a backend application that runs on a server. To run this example app, you will need a confidential keycloak client and you can find all the instructions to run the app in a `README.md` file under the example app directory
