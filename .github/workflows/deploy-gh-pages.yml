@@ -7,7 +7,7 @@ on:
       - dev
     paths:
       - '.github/**'
-      - 'public-spa/**'
+      - 'playground/public-spa/**'
 
 env:
   DEPLOY_REPO_BRANCH: gh-pages
@@ -26,10 +26,10 @@ jobs:
           yarn build
           yarn export
           touch ./out/.nojekyll
-        working-directory: ./public-spa
+        working-directory: ./playground/public-spa
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: ${{ env.DEPLOY_REPO_BRANCH }}
-          folder: ./public-spa/out
+          folder: ./playground/public-spa/out
