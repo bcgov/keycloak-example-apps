@@ -1,0 +1,11 @@
+version: '3.3'
+services:
+  app:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: example_next_app
+    stdin_open: true
+    ports:
+      - '3000:3000'

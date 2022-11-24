@@ -1,0 +1,34 @@
+{
+  "name": "public-spa",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "export": "next export",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "keycloak-js": "^19.0.1",
+    "lodash": "^4.17.21",
+    "next": "12.3.0",
+    "qs": "^6.11.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-toastify": "^9.1.1",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^2.1.3",
+    "store2": "^2.14.2",
+    "styled-components": "^5.3.5"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.185",
+    "@types/node": "18.7.18",
+    "@types/react": "18.0.20",
+    "@types/styled-components": "^5.1.26",
+    "eslint": "8.23.1",
+    "eslint-config-next": "12.3.0",
+    "typescript": "4.8.3"
+  }
+}
