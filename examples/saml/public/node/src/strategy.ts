@@ -16,7 +16,7 @@ export class SamlStrategy {
         audience: samlStrategyConfig.entityId,
         issuer: samlStrategyConfig.entityId,
         callbackUrl: `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}/login/callback`,
-        entryPoint: process.env.SSO_SIGN_ON_SERVICE_URL,
+        entryPoint: samlStrategyConfig.signOnUrl,
         cert: samlStrategyConfig.x509Cert,
         logoutUrl: samlStrategyConfig.logoutUrl,
         logoutCallbackUrl: `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}/logout/callback`,
