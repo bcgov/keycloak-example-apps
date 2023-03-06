@@ -6,11 +6,11 @@ import fs from 'fs';
 import http from 'http';
 import path from 'path';
 import * as dotenv from 'dotenv';
+import { SamlStrategy } from './strategy';
 
 dotenv.config();
 const app = express();
-const idpCertPAth = path.join(__dirname, `${process.env.SSO_X509_CERT_FILE_NAME}`);
-const idpCert = fs.readFileSync(idpCertPAth, 'utf8');
+let samlFormInputs = {};
 
 passport.serializeUser<Express.User>((user: any, done) => {
   console.log('Serialized User', user);
@@ -22,22 +22,7 @@ passport.deserializeUser<Express.User>((user: any, done) => {
   done(null, user);
 });
 
-const samlStrategy = new Strategy(
-  {
-    audience: process.env.SSO_SP_ENTITY_ID,
-    issuer: process.env.SSO_SP_ENTITY_ID,
-    callbackUrl: `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}/login/callback`,
-    entryPoint: process.env.SSO_SIGN_ON_SERVICE_URL,
-    cert: idpCert,
-    logoutUrl: process.env.SSO_LOGOUT_SERVICE_URL,
-    logoutCallbackUrl: `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}/logout/callback`,
-    signatureAlgorithm: 'sha256',
-  },
-  (profile: any, done: any) => {
-    console.log('passport.use() profile: %s \n', JSON.stringify(profile));
-    return done(null, profile);
-  },
-);
+const passportSamlStrategy = new SamlStrategy();
 
 app.use((req, res, next) => {
   console.log(`METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
@@ -65,7 +50,7 @@ app.use(passport.initialize({}));
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-passport.use('samlStrategy', samlStrategy);
+//passport.use('samlStrategy', samlStrategy);
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', req.header('origin'));
@@ -81,38 +66,31 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  res.render('index', { user: req.user });
+  res.render('index', { user: req.user, inputs: samlFormInputs });
 });
 
-app.get(
-  '/login',
-  (req, res, next) => {
-    next();
-  },
-  passport.authenticate('samlStrategy', {
+app.post('/login', (req, res) => {
+  samlFormInputs = { ...req.body };
+  passportSamlStrategy.createStrategy({ ...req.body });
+  passport.authenticate(passportSamlStrategy.getStrategy(), {
     failureFlash: true,
     successRedirect: '/',
     failureRedirect: '/login',
-  }),
-);
+  })(req, res);
+});
 
-app.post(
-  '/login/callback',
-  (req, res, next) => {
-    next();
-  },
-  passport.authenticate('samlStrategy', {
-    failureRedirect: '/',
+app.post('/login/callback', (req, res, next) => {
+  passport.authenticate(passportSamlStrategy.getStrategy(), {
+    failureRedirect: '/login',
+    successRedirect: '/',
     failureFlash: true,
-  }),
-  (req: any, res: any) => {
-    res.redirect('/');
-  },
-);
+  })(req, res);
+});
 
 app.get('/logout', (req: any, res, next) => {
   console.log(`User ${req.user} logged out`);
-  samlStrategy.logout(req, (err, request: any) => {
+  const samlStrategy = passportSamlStrategy.getStrategy();
+  samlStrategy.logout(req, (err: any, request: any) => {
     if (!err) {
       res.redirect(request);
     }
