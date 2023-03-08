@@ -62,23 +62,109 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">SAML Response</h5>
-
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Attribute</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% Object.keys(user.attributes).forEach(function(prop) { %>
-              <tr>
-                <td><%- prop %></td>
-                <td><%- user.attributes[prop] %></td>
-              </tr>
-              <% }); %>
-            </tbody>
-          </table>
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link active"
+                id="assertions-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#assertions-tab-pane"
+                type="button"
+                role="tab"
+                aria-controls="assertions-tab-pane"
+                aria-selected="true"
+              >
+                Assertions
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="attributes-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#attributes-tab-pane"
+                type="button"
+                role="tab"
+                aria-controls="attributes-tab-pane"
+                aria-selected="false"
+              >
+                Attributes
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="saml-response-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#saml-response-tab-pane"
+                type="button"
+                role="tab"
+                aria-controls="saml-response-tab-pane"
+                aria-selected="false"
+              >
+                SAML
+              </button>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div
+              class="tab-pane fade show active"
+              id="assertions-tab-pane"
+              role="tabpanel"
+              aria-labelledby="assertions-tab"
+              tabindex="0"
+            >
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Detail</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% Object.keys(user).forEach(function(prop) { %>
+                  <tr>
+                    <td><%- prop %></td>
+                    <td><%- user[prop] %></td>
+                  </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="attributes-tab-pane"
+              role="tabpanel"
+              aria-labelledby="attributes-tab"
+              tabindex="0"
+            >
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Attribute</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% Object.keys(user.attributes).forEach(function(prop) { %>
+                  <tr>
+                    <td><%- prop %></td>
+                    <td><%- user.attributes[prop] %></td>
+                  </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="saml-response-tab-pane"
+              role="tabpanel"
+              aria-labelledby="saml-response-tab"
+              tabindex="0"
+            >
+              <textarea style="border: none; width: 100%" rows="50"><%- samlResponse %></textarea>
+            </div>
+          </div>
         </div>
       </div>
       <% } %> <% } %>

@@ -19,7 +19,7 @@ export class SamlStrategy {
         entryPoint: samlStrategyConfig.signOnUrl,
         cert: samlStrategyConfig.x509Cert,
         logoutUrl: samlStrategyConfig.logoutUrl,
-        logoutCallbackUrl: `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}/logout/callback`,
+        //logoutCallbackUrl: `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}/logout/callback`,
         signatureAlgorithm: 'sha256',
       },
       (profile: any, done: any) => {

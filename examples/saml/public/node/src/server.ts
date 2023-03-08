@@ -11,9 +11,12 @@ import { SamlStrategy } from './strategy';
 dotenv.config();
 const app = express();
 let samlFormInputs = {};
+let samlResponse = '';
 
 passport.serializeUser<Express.User>((user: any, done) => {
   console.log('Serialized User', user);
+  samlResponse = user.getSamlResponseXml();
+
   done(null, user);
 });
 
@@ -66,7 +69,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  res.render('index', { user: req.user, inputs: samlFormInputs });
+  res.render('index', { user: req.user, inputs: samlFormInputs, samlResponse });
 });
 
 app.post('/login', (req, res) => {
@@ -79,29 +82,24 @@ app.post('/login', (req, res) => {
   })(req, res);
 });
 
-app.post('/login/callback', (req, res, next) => {
+app.post('/login/callback', (req: any, res, next) => {
   passport.authenticate(passportSamlStrategy.getStrategy(), {
     failureRedirect: '/login',
     successRedirect: '/',
     failureFlash: true,
   })(req, res);
+  //console.log(req);
 });
 
 app.get('/logout', (req: any, res, next) => {
   console.log(`User ${req.user} logged out`);
   const samlStrategy = passportSamlStrategy.getStrategy();
-  samlStrategy.logout(req, (err: any, request: any) => {
-    if (!err) {
-      res.redirect(request);
-    }
+  samlStrategy.logout(req, (err: any, requestUrl: any) => {
+    res.redirect(requestUrl);
   });
 });
 
-app.post('/logout/callback', (req: any, res) => {
-  req.logout();
-});
-
-app.post('/logout', (req, res) => {
+app.post('/logout/callback', (req, res) => {
   req.session.destroy(() => {
     res.redirect('/');
   });
