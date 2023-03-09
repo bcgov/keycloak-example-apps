@@ -7,6 +7,7 @@ import http from 'http';
 import path from 'path';
 import * as dotenv from 'dotenv';
 import { SamlStrategy } from './strategy';
+import { formatXml } from './utils';
 
 dotenv.config();
 const app = express();
@@ -15,7 +16,7 @@ let samlResponse = '';
 
 passport.serializeUser<Express.User>((user: any, done) => {
   console.log('Serialized User', user);
-  samlResponse = user.getSamlResponseXml();
+  samlResponse = formatXml(user.getSamlResponseXml());
 
   done(null, user);
 });
