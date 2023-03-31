@@ -14,6 +14,12 @@ const loginOptions = {
   idpHint: '',
 };
 
+export const logoutOptions = {
+  redirectUri: `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${encodeURIComponent(
+    process.env.REACT_APP_SSO_REDIRECT_URI,
+  )}`,
+};
+
 export const initializeKeycloak = async () => {
   try {
     _kc.onTokenExpired = () => {
@@ -23,7 +29,7 @@ export const initializeKeycloak = async () => {
     const auth = await _kc.init({
       pkceMethod: 'S256',
       checkLoginIframe: false,
-      onLoad: 'login-required',
+      onLoad: undefined,
     });
 
     if (auth) {
