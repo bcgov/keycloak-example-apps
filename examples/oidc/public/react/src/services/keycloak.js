@@ -7,14 +7,12 @@ const _kc = new Keycloak({
 });
 
 const loginOptions = {
-  // https://logon7.gov.bc.ca/clp-cgi/logoff.cgi uri performs siteminder logout
-  redirectUri: `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${encodeURIComponent(
-    process.env.REACT_APP_SSO_REDIRECT_URI,
-  )}`,
+  redirectUri: process.env.REACT_APP_SSO_REDIRECT_URI,
   idpHint: '',
 };
 
 export const logoutOptions = {
+  // https://logon7.gov.bc.ca/clp-cgi/logoff.cgi uri performs siteminder logout
   redirectUri: `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${encodeURIComponent(
     process.env.REACT_APP_SSO_REDIRECT_URI,
   )}`,
