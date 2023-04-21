@@ -13,7 +13,7 @@ This is an example backend app that authenticates users using OAuth 2.0 standard
 
 ## Installing
 
-- Update below required values and add them to a `.env` file and save it in project directory
+- Update the required values below and add them to a `.env` file in the project directory and save it .
 
   ```sh
   SSO_SESSION_SECRET=
