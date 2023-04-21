@@ -16,6 +16,8 @@ env:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-22.04
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
