@@ -1,15 +1,10 @@
 import Keycloak from 'keycloak-js'
 
-const logoutOptions = {
+const loginOptions = {
   // https://logon7.gov.bc.ca/clp-cgi/logoff.cgi uri performs siteminder logout
   redirectUri: `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${encodeURIComponent(
     `${import.meta.env.VITE_SSO_REDIRECT_URI}`
   )}`,
-  idpHint: '',
-}
-
-const loginOptions = {
-  redirectUri: import.meta.env.VITE_SSO_REDIRECT_URI,
   idpHint: '',
 }
 
@@ -42,5 +37,5 @@ export const initializeKeycloak = async () => {
 }
 
 export const logout = () => {
-  _kc.logout(logoutOptions)
+  _kc.logout()
 }
