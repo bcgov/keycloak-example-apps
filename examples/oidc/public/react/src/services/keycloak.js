@@ -7,11 +7,15 @@ const _kc = new Keycloak({
 });
 
 const loginOptions = {
+  redirectUri: process.env.REACT_APP_SSO_REDIRECT_URI,
+  idpHint: '',
+};
+
+export const logoutOptions = {
   // https://logon7.gov.bc.ca/clp-cgi/logoff.cgi uri performs siteminder logout
   redirectUri: `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${encodeURIComponent(
     process.env.REACT_APP_SSO_REDIRECT_URI,
   )}`,
-  idpHint: '',
 };
 
 export const initializeKeycloak = async () => {
@@ -23,7 +27,7 @@ export const initializeKeycloak = async () => {
     const auth = await _kc.init({
       pkceMethod: 'S256',
       checkLoginIframe: false,
-      onLoad: 'login-required',
+      onLoad: undefined,
     });
 
     if (auth) {

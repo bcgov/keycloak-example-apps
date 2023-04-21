@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head'); %>
+  </head>
+  <body class="container">
+    <header><%- include('./partials/header'); %></header>
+
+    <main>
+      <div class="card">
+        <div class="card-body">
+          <form class="needs-validation" method="post" action="/login">
+            <div class="form-group">
+              <label for="signOnUrl" class="form-label">SSO Service URL</label>
+              <input
+                type="text"
+                class="form-control"
+                id="signOnUrl"
+                name="signOnUrl"
+                required
+                value="<%- inputs?.signOnUrl %>"
+              />
+            </div>
+            <div class="form-group">
+              <label for="logoutUrl" class="form-label">Logout URL</label>
+              <input
+                type="text"
+                class="form-control"
+                id="logoutUrl"
+                name="logoutUrl"
+                required
+                value="<%- inputs?.logoutUrl %>"
+              />
+            </div>
+            <div class="form-group">
+              <label for="entityId" class="form-label">Entity ID</label>
+              <input
+                type="text"
+                class="form-control"
+                id="entityId"
+                name="entityId"
+                required
+                value="<%- inputs?.entityId %>"
+              />
+            </div>
+            <div class="form-group">
+              <label for="x509Cert" class="form-label">X.509 Certificate</label>
+              <textarea id="x509Cert" cols="30" rows="10" class="form-control" name="x509Cert" required>
+    <%- inputs?.x509Cert %></textarea
+              >
+            </div>
+            <br />
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary">Login</button>
+              <% if(user){%><a role="button" class="btn btn-secondary" href="/logout">Logout</a><% } %>
+            </div>
+          </form>
+        </div>
+      </div>
+      <br />
+      <% if(user) { %> <% if(user?.attributes) { %>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">SAML Response</h5>
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link active"
+                id="assertions-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#assertions-tab-pane"
+                type="button"
+                role="tab"
+                aria-controls="assertions-tab-pane"
+                aria-selected="true"
+              >
+                Assertions
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="attributes-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#attributes-tab-pane"
+                type="button"
+                role="tab"
+                aria-controls="attributes-tab-pane"
+                aria-selected="false"
+              >
+                Attributes
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="saml-response-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#saml-response-tab-pane"
+                type="button"
+                role="tab"
+                aria-controls="saml-response-tab-pane"
+                aria-selected="false"
+              >
+                SAML
+              </button>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div
+              class="tab-pane fade show active"
+              id="assertions-tab-pane"
+              role="tabpanel"
+              aria-labelledby="assertions-tab"
+              tabindex="0"
+            >
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Detail</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% Object.keys(user).forEach(function(prop) { %>
+                  <tr>
+                    <td><%- prop %></td>
+                    <td><%- user[prop] %></td>
+                  </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="attributes-tab-pane"
+              role="tabpanel"
+              aria-labelledby="attributes-tab"
+              tabindex="0"
+            >
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Attribute</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% Object.keys(user.attributes).forEach(function(prop) { %>
+                  <tr>
+                    <td><%- prop %></td>
+                    <td><%- user.attributes[prop] %></td>
+                  </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="saml-response-tab-pane"
+              role="tabpanel"
+              aria-labelledby="saml-response-tab"
+              tabindex="0"
+            >
+              <pre class="prettyprint"><code class="language-xml"><%- samlResponse %></code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% } %> <% } %>
+    </main>
+  </body>
+</html>
