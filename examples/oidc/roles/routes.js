@@ -26,12 +26,6 @@ export const setRoutes = (router) => {
   router.get('/home', checkAuthenticated, (req, res, next) => {
     res.render('home', {
       username: `${req.session.passport.user.given_name} ${req.session.passport.user.family_name}`,
-    });
-  });
-
-  router.get('/role', checkAuthenticated, (req, res, next) => {
-    res.render('role', {
-      username: `${req.session.passport.user.given_name} ${req.session.passport.user.family_name}`,
       role: `${req.session.passport.user.client_roles}`,
     });
   });

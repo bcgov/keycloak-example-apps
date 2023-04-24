@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Confidential Client Example App</title>
+    <%- include('./head'); %>
   </head>
-  <body>
-    <h1>Hello, pathfinder friend</h1>
-    <a href="/auth">Proceed to login...</a>
+  <body class="container">
+    <h1 class="h3 mb-3 fw-normal">Hello, pathfinder friend</h1>
+    <main class="form-signin">
+      <form method="get" action="/auth">
+        <h2 class="h3 mb-3 fw-normal">Please sign in</h2>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+      </form>
+    </main>
   </body>
 </html>

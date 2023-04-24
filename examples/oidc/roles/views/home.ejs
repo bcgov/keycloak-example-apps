@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Confidential Client Example App</title>
+    <%- include('./head'); %>
   </head>
   <body>
-    <h1>Login Successful!</h1>
-    <h3>Hello, <%= username %></h3>
-    <p>Welcome to the Role Based Example App</p>
-    <a href="/role">check my role</a>
-    <a href="/logout">logout</a>
+    <h1 class="h3 mb-3 fw-normal">Login Successful!</h1>
+    <main class="form-signin">
+      <form>
+        <h2 class="h3 mb-3 fw-normal">Hello,Pathfinder</h2>
+
+        <p  class="h3 mb-3 fw-normal">Welcome to the Role Based Example App</p>
+        <% if( role !== 'undefined' ) { %>
+          <p  class="h3 mb-3 fw-normal"> You have following role <%= role %></p>
+          <% } else { %>
+              <p  class="h3 mb-3 fw-normal">Sorry no roles assigned yet. Please contact admin</p>
+          <% } %>
+
+          <div class="col-12">
+            <a role="button" class="btn btn-secondary" href="/logout">Logout</a>
+          </div>
+      </form>
+    </main>
   </body>
 </html>

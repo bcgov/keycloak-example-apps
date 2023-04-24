@@ -17,7 +17,7 @@ This is an example backend app that authenticates users using OAuth 2.0 standard
 
   ```sh
   SSO_SESSION_SECRET=
-  SSO_AUTH_SERVER_URL=https://sso-keycloak-e4ca1d-dev.apps.gold.devops.gov.bc.ca/auth
+  SSO_AUTH_SERVER_URL=https://dev.loginproxy.gov.bc.ca/auth
   SSO_REALM=standard
   SSO_CLIENT_ID=
   SSO_CLIENT_SECRET=
