@@ -11,7 +11,11 @@
 
         <p  class="h3 mb-3 fw-normal">Welcome to the Role Based Example App</p>
         <% if( role !== 'undefined') { %>
-            <%- include(`./partials/${role}`); %>
+            <% if(role.split(",").length == 2) { %>
+              <%- include('./partials/tworoles'); %>
+            <% } else { %>
+              <%- include(`./partials/${role}`); %>
+            <% } %>
           <% } else { %>
             <%- include('./partials/norole'); %>
           <% } %>
