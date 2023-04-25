@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%- include('./head'); %>
+    <%- include('./partials/head'); %>
   </head>
   <body>
     <h1 class="h3 mb-3 fw-normal">Login Successful!</h1>
@@ -10,10 +10,10 @@
         <h2 class="h3 mb-3 fw-normal">Hello,Pathfinder</h2>
 
         <p  class="h3 mb-3 fw-normal">Welcome to the Role Based Example App</p>
-        <% if( role !== 'undefined' ) { %>
-          <p  class="h3 mb-3 fw-normal"> You have following role <%= role %></p>
+        <% if( role !== 'undefined') { %>
+            <%- include(`./partials/${role}`); %>
           <% } else { %>
-              <p  class="h3 mb-3 fw-normal">Sorry no roles assigned yet. Please contact admin</p>
+            <%- include('./partials/norole'); %>
           <% } %>
 
           <div class="col-12">
