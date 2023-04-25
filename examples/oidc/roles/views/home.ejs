@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head'); %>
+  </head>
+  <body>
+    <h1 class="h3 mb-3 fw-normal">Login Successful!</h1>
+    <main class="form-signin">
+      <form>
+        <h2 class="h3 mb-3 fw-normal">Hello,Pathfinder</h2>
+
+        <p  class="h3 mb-3 fw-normal">Welcome to the Role Based Example App</p>
+        <% if( role !== 'undefined') { %>
+            <% if(role.split(",").length == 2) { %>
+              <%- include('./partials/tworoles'); %>
+            <% } else { %>
+              <%- include(`./partials/${role}`); %>
+            <% } %>
+          <% } else { %>
+            <%- include('./partials/norole'); %>
+          <% } %>
+
+          <div class="col-12">
+            <a role="button" class="btn btn-secondary" href="/logout">Logout</a>
+          </div>
+      </form>
+    </main>
+  </body>
+</html>
