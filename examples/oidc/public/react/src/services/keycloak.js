@@ -11,13 +11,6 @@ const loginOptions = {
   idpHint: '',
 };
 
-export const logoutOptions = {
-  // https://logon7.gov.bc.ca/clp-cgi/logoff.cgi uri performs siteminder logout
-  redirectUri: `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${encodeURIComponent(
-    process.env.REACT_APP_SSO_REDIRECT_URI,
-  )}`,
-};
-
 export const initializeKeycloak = async () => {
   try {
     _kc.onTokenExpired = () => {
@@ -40,6 +33,14 @@ export const initializeKeycloak = async () => {
   }
 };
 
+// since we have to perform logout at siteminder, we cannot use keycloak-js logout method so manually triggering logout through a function
+// if using post_logout_redirect_uri, then either client_id or id_token_hint has to be included and post_logout_redirect_uri need to match
+// one of valid post logout redirect uris in the client configuration
 export const logout = () => {
-  _kc.logout();
+  window.location.href = `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${encodeURIComponent(
+    `${process.env.REACT_APP_SSO_AUTH_SERVER_URL}/realms/${process.env.REACT_APP_SSO_REALM}/protocol/openid-connect/logout?post_logout_redirect_uri=` +
+      process.env.REACT_APP_SSO_REDIRECT_URI +
+      '&client_id=' +
+      process.env.REACT_APP_SSO_CLIENT_ID,
+  )}`;
 };
