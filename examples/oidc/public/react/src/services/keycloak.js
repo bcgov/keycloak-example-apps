@@ -14,13 +14,24 @@ const loginOptions = {
 export const initializeKeycloak = async () => {
   try {
     _kc.onTokenExpired = () => {
-      _kc.updateToken();
+      _kc
+        .updateToken(5)
+        .then(function (refreshed) {
+          if (refreshed) {
+            alert('Token was successfully refreshed');
+          } else {
+            alert('Token is still valid');
+          }
+        })
+        .catch(function () {
+          alert('Failed to refresh the token, or the session has expired');
+        });
     };
 
     const auth = await _kc.init({
       pkceMethod: 'S256',
-      checkLoginIframe: false,
-      onLoad: undefined,
+      checkLoginIframe: true,
+      onLoad: 'check-sso',
     });
 
     if (auth) {
@@ -40,7 +51,7 @@ export const logout = () => {
   window.location.href = `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${encodeURIComponent(
     `${process.env.REACT_APP_SSO_AUTH_SERVER_URL}/realms/${process.env.REACT_APP_SSO_REALM}/protocol/openid-connect/logout?post_logout_redirect_uri=` +
       process.env.REACT_APP_SSO_REDIRECT_URI +
-      '&client_id=' +
-      process.env.REACT_APP_SSO_CLIENT_ID,
+      '&id_token_hint=' +
+      _kc.idToken,
   )}`;
 };
