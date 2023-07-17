@@ -3,9 +3,10 @@ import type { KeycloakInstance, KeycloakConfig, KeycloakLoginOptions } from 'key
 import { Container, Button, Message } from 'semantic-ui-react';
 import TokenDetails from 'components/TokenDetails';
 import Configuration from 'components/Configuration';
+import Keycloak from 'keycloak-js';
 
 interface Props {
-  keycloak: KeycloakInstance;
+  keycloak: Keycloak;
   kcConfig: KeycloakConfig;
   setKcConfig: Function;
   loginOptions: KeycloakLoginOptions;
@@ -14,8 +15,14 @@ interface Props {
 
 const Home = ({ keycloak, kcConfig, setKcConfig, loginOptions, setLginOptions }: Props) => {
   const handleLogin = () => keycloak?.login(loginOptions);
-  const handleLogout = () => keycloak?.logout();
-
+  const handleLogout = () => {
+    window.location.href = `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${encodeURIComponent(
+      `${kcConfig.url}/realms/${kcConfig.realm}/protocol/openid-connect/logout?post_logout_redirect_uri=` +
+        loginOptions.redirectUri +
+        '&id_token_hint=' +
+        keycloak.idToken,
+    )}`;
+  };
   return (
     <Container>
       <br />
