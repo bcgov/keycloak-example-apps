@@ -20,7 +20,7 @@ export const initializeKeycloak = async () => {
     const auth = await _kc.init({
       pkceMethod: 'S256',
       checkLoginIframe: false,
-      onLoad: 'login-required',
+      onLoad: 'check-sso',
     })
 
     if (auth) {
