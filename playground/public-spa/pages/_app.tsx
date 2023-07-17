@@ -5,17 +5,15 @@ import { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import type { AppProps } from 'next/app';
 import Keycloak from 'keycloak-js';
-import type { KeycloakInstance, KeycloakConfig, KeycloakInitOptions, KeycloakLoginOptions } from 'keycloak-js';
+import type { KeycloakConfig, KeycloakInitOptions, KeycloakLoginOptions } from 'keycloak-js';
 import store from 'store2';
+import getConfig from 'next/config';
 
-const initOptions: KeycloakInitOptions = {
-  pkceMethod: 'S256',
-  checkLoginIframe: false,
-  onLoad: undefined,
-};
+const { publicRuntimeConfig = {} } = getConfig() || {};
+const { sso_redirect_uri, app_env } = publicRuntimeConfig;
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [keycloak, setKeycloak] = useState<KeycloakInstance>();
+  const [keycloak, setKeycloak] = useState<Keycloak>();
   const [loading, setLoading] = useState(false);
 
   const [kcConfig, setKcConfig] = useState<KeycloakConfig>(
@@ -26,11 +24,15 @@ function MyApp({ Component, pageProps }: AppProps) {
     },
   );
 
+  const initOptions: KeycloakInitOptions = {
+    pkceMethod: 'S256',
+    onLoad: app_env === 'prod' ? 'check-sso' : undefined,
+    silentCheckSsoRedirectUri: app_env === 'prod' ? `${sso_redirect_uri}/silent-check-sso.html` : undefined,
+  };
+
   const [loginOptions, setLginOptions] = useState<KeycloakLoginOptions>(
     store.session('loginOptions') || {
-      redirectUri: `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${encodeURIComponent(
-        'https://bcgov.github.io/keycloak-example-apps',
-      )}`,
+      redirectUri: sso_redirect_uri,
       idpHint: '',
       scope: 'openid',
     },
@@ -41,7 +43,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     const initKeycloak = async () => {
       const _keycloak = new (Keycloak as any)(kcConfig);
-      setKeycloak(_keycloak);
 
       _keycloak.onTokenExpired = () => {
         _keycloak.updateToken();
@@ -51,6 +52,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       _keycloak
         .init(initOptions)
         .then(() => {
+          setKeycloak(_keycloak);
           setLoading(false);
         })
         .catch((error: any) => {

@@ -12,7 +12,8 @@ on:
 env:
   DEPLOY_REPO_BRANCH: gh-pages
   APP_BASE_PATH: '/keycloak-example-apps'
-
+  SSO_REDIRECT_URI: 'https://bcgov.github.io/keycloak-example-apps'
+  APP_ENV: 'prod'
 jobs:
   build-and-deploy:
     runs-on: ubuntu-22.04
