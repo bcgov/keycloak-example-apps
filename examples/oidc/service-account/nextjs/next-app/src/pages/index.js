@@ -1,22 +1,22 @@
 import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
 import LoginBtn from '@/components/login-btn';
-import {useState} from 'react'
+import { useState } from 'react'
 
 export default function Home() {
   const [message, setMessage] = useState(null);
 
   const handleLog = async () => {
-    setMessage(null);
-    const result = await fetch('/api/message')
-      .then(res => res.json())
-    
-    if (result.error) {
-      setMessage('Please login to view this content.')
-    }else {
-      setMessage(result.content)
+    try {
+      setMessage(null);
+      const result = await fetch('/api/message')
+        .then(res => res.json())
+      setMessage(result.error ? 'Please login to view this content.' : result.content)
+    } catch (e) {
+      setMessage('Failed to send API request.')
     }
   }
+  
   return (
     <>
       <Head>
