@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useCallback } from 'react';
 import { AuthenticationContext } from '../../App';
 import { logout } from '../../services/keycloak';
 import * as moment from 'moment';
@@ -9,6 +9,20 @@ function Home() {
   const formatDate = (unixTime) => {
     return moment(unixTime * 1000).format('dddd, MMMM Do, YYYY h:mm A');
   };
+
+  const checkUserSession = useCallback(async () => {
+    try {
+      const data = await keycloak.loadUserInfo();
+      console.log(`user session exists`, data);
+    } catch (err) {
+      window.location.reload();
+    }
+  }, [keycloak]);
+
+  useEffect(() => {
+    const interval = setInterval(checkUserSession, 5_000);
+    return () => clearInterval(interval);
+  });
 
   return (
     <>
