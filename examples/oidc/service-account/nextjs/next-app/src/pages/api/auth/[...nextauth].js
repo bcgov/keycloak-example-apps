@@ -5,9 +5,9 @@ export const authOptions = {
   // Configure one or more authentication providers
   providers: [
     KeycloakProvider({
-        clientId: process.env.KEYCLOAK_ID,
-        clientSecret: process.env.KEYCLOAK_SECRET,
-        issuer: process.env.KEYCLOAK_ISSUER,
+        clientId: process.env.SSO_CLIENT_ID,
+        clientSecret: process.env.SSO_CLIENT_SECRET,
+        issuer: process.env.SSO_ISSUER,
       })
   ],
 }

@@ -2,7 +2,7 @@ import { createRemoteJWKSet, jwtVerify } from 'jose';
 
 // Create a json web key set from the public URI, handling key rotation and limiting calls.
 // See https://github.com/panva/jose/blob/HEAD/docs/functions/jwks_remote.createRemoteJWKSet.md for details and additional configuration.
-const JWKS = createRemoteJWKSet(new URL(`${process.env.KEYCLOAK_ISSUER}/protocol/openid-connect/certs`))
+const JWKS = createRemoteJWKSet(new URL(`${process.env.SSO_ISSUER}/protocol/openid-connect/certs`))
 
 /**
  * Retrieve the bearer token from a request. Throws an error message if expected header is missing or malformed.
@@ -37,8 +37,8 @@ export const hasValidBearerToken = async (req) => {
            successfully. You can use the payload to view the verified token contents.
         */ 
         const { payload } = await jwtVerify(token, JWKS, {
-            issuer: process.env.KEYCLOAK_ISSUER,
-            audience: process.env.KEYCLOAK_ID,
+            issuer: process.env.SSO_ISSUER,
+            audience: process.env.SSO_CLIENT_ID,
         })
         return { authenticated: true }
     } catch (e) {

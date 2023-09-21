@@ -12,12 +12,12 @@ This folder contains an example use case of a client service account. It contain
 To run this demo, you will require a CSS integration with the usecase "Browser Login and Service Account". In both the [next-app](./next-app/) and [offline-service](./offline-service/) folders, create a .env file with the following content (see below for values to add from your installation JSON):
 
 ```
-KEYCLOAK_ID="..."
-KEYCLOAK_SECRET="..."
-KEYCLOAK_ISSUER="..."
+SSO_CLIENT_ID="..."
+SSO_CLIENT_SECRET="..."
+SSO_ISSUER="..."
 ```
 
-Download your integrations Installation JSON. For the **KEYCLOAK_ID**, use the JSON's "resource" value. For the **KEYCLOAK_SECRET**, use the JSON's "credentials.secret" value. For the **KEYCLOAK_ISSUER**, use the JSON's "auth-server-url" value and the "realm" value to build a url in the format "<auth-server-url>/realms/<realm>", e.g "https://sso-keycloak-e4ca1d-dev.apps.gold.devops.gov.bc.ca/auth/realms/standard". 
+Download your integrations Installation JSON. For the **SSO_CLIENT_ID**, use the JSON's "resource" value. For the **SSO_CLIENT_SECRET**, use the JSON's "credentials.secret" value. For the **SSO_ISSUER**, use the JSON's "auth-server-url" value and the "realm" value to build a url in the format "<auth-server-url>/realms/<realm>", e.g "https://sso-keycloak-e4ca1d-dev.apps.gold.devops.gov.bc.ca/auth/realms/standard". 
 
 For the next-app's .env file, add the additional line:
 
