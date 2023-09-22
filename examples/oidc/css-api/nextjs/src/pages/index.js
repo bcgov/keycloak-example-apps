@@ -1,21 +1,11 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-import { useState } from 'react'
+import IntegrationsTable from '@/components/IntegrationsTable'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-  const [integrations, setIntegrations] = useState([])
-
-  const handleFetchIntegrationClick = async () => {
-    const fetchedIntegrations = await fetch('/api/integrations')
-      .then(res => res.json())
-    console.log(fetchedIntegrations.data)
-    setIntegrations(fetchedIntegrations.data)
-  }
-
   return (
     <>
       <Head>
@@ -25,15 +15,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
-        <p>Hello Next!</p>
-        <button onClick={handleFetchIntegrationClick}>Fetch Integrations</button>
-        {integrations.map(integration => (
-
-          <>
-            {integration}
-          </>
-        )
-        )}
+        <IntegrationsTable />
       </main>
     </>
   )
