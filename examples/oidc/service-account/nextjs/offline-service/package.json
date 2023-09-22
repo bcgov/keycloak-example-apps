@@ -1,8 +1,9 @@
 {
   "name": "offline-service",
   "version": "1.0.0",
-  "description": "",
-  "main": "ping.js",
+  "engines": {
+    "node": ">18.0.0"
+  },
   "scripts": {
     "start": "node main.js"
   },
