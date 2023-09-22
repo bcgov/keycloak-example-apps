@@ -9,7 +9,9 @@ This folder contains an example use case of a client service account. It contain
 
 ### Environment variable configuration
 
-To run this demo, you will require a CSS integration with the usecase "Browser Login and Service Account". In both the [next-app](./next-app/) and [offline-service](./offline-service/) folders, create a .env file with the following content (see below for values to add from your installation JSON):
+To run this demo, you will require a CSS integration with the usecase "Browser Login and Service Account". When creating an integration for this example, you can allow "*" as a redirect URI for testing locally. Ensure not to allow a wildcard URI in a production application. 
+
+In both the [next-app](./next-app/) and [offline-service](./offline-service/) folders, create a .env file with the following content (see below for values to add from your installation JSON):
 
 ```
 SSO_CLIENT_ID="..."
