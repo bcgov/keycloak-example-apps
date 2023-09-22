@@ -6,6 +6,11 @@ import styles from '@/styles/Home.module.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const handleFetchIntegrationClick = async () => {
+    return fetch('/api/integrations')
+      .then(res => res.json())
+  }
+
   return (
     <>
       <Head>
@@ -16,6 +21,7 @@ export default function Home() {
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
         <p>Hello Next!</p>
+        <button onClick={handleFetchIntegrationClick}>Fetch Integrations</button>
       </main>
     </>
   )
