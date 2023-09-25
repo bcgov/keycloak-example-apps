@@ -1,30 +1,13 @@
 import styles from '@/styles/Home.module.css'
 import { useEffect, useState } from 'react'
-
+import useGetData from '@/hooks/useGetData'
 
 export default function IntegrationsTable() {
-    const [integrations, setIntegrations] = useState([]);
-    const [loadingIntegrations, setLoadingIntegrations] = useState(false);
-    const [apiError, setApiError] = useState(false);
+    const { data: integrations, loadingData: loadingIntegrations, apiError, fetchData: fetchIntegrations } = useGetData([]);
 
-    const fetchIntegrations = async () => {
-        try {
-            setLoadingIntegrations(true);
-            const fetchedIntegrations = await fetch('/api/integrations')
-                .then(res => {
-                    console.log(res.status)
-                    if (res.status >= 300) throw 'Request failure'
-                    return res.json()
-                })
-            setIntegrations(fetchedIntegrations.data)
-        } catch {
-            setApiError(true)
-        } finally {
-            setLoadingIntegrations(false)
-        }
-    }
-
-    useEffect(() => fetchIntegrations, [])
+    useEffect(() => {
+        fetchIntegrations('/api/integrations')
+    }, [])
 
     if (loadingIntegrations) {
         return (
@@ -36,7 +19,7 @@ export default function IntegrationsTable() {
         return (
             <>
                 <p>Failed to fetch integrations. Click below to try again</p>
-                <button onClick={fetchIntegrations}>Fetch Integrations</button>
+                <button onClick={() => fetchIntegrations('/api/integrations')}>Fetch Integrations</button>
             </>
         )
     }
