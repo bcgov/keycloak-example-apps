@@ -7,13 +7,15 @@ export default function useGetData(defaultData) {
 
     const fetchData = async (url) => {
         try {
+            setData(defaultData);
+            setApiError(false);
             setLoadingData(true);
             const fetchedData = await fetch(url)
                 .then(res => {
                     if (res.status >= 300) throw 'Request failure'
                     return res.json()
                 })
-            setData(fetchedData.data)
+            setData(fetchedData)
         } catch {
             setApiError(true)
         } finally {
