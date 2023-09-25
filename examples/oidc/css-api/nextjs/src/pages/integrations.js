@@ -1,7 +1,7 @@
-import AllIntegrations from '@/components/AllIntegrations'
-import IntegrationSearch from '@/components/IntegrationSearch'
+import AllIntegrations from '@/components/integrations/AllIntegrations'
+import IntegrationSearch from '@/components/integrations/IntegrationSearch'
 
-export default function Home() {
+export default function Integrations() {
     return (
         <>
             <AllIntegrations />

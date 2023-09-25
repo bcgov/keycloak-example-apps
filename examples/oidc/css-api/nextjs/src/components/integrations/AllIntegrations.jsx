@@ -1,7 +1,7 @@
 import styles from '@/styles/Home.module.css'
 import { useEffect, useState } from 'react'
 import useGetData from '@/hooks/useGetData'
-import IntegrationsTable from '@/components/IntegrationsTable'
+import IntegrationsTable from './IntegrationsTable'
 
 export default function AllIntegrations() {
     const { data: integrations, loadingData: loadingIntegrations, apiError, fetchData: fetchIntegrations } = useGetData([]);
