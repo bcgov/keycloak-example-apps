@@ -7,9 +7,13 @@ This folder contains an example use case of a client service account. It contain
 
 ## Getting Started
 
+### Prerequisites
+
+Ensure to have npm and nodejs installed, with a version of node >= 18.0.0.
+
 ### Environment variable configuration
 
-To run this demo, you will require a CSS integration with the usecase "Browser Login and Service Account". When creating an integration for this example, you can allow "*" as a redirect URI for testing locally. Ensure not to allow a wildcard URI in a production application. 
+To run this demo, you will require a CSS integration with the usecase "Browser Login and Service Account". When creating an integration for this example, you can add either "http://localhost:3000/*" for the redirect uri, or just "\*" if using a different port to run the app locally. Ensure not to allow a wildcard URI in a production application. 
 
 In both the [next-app](./next-app/) and [offline-service](./offline-service/) folders, create a .env file with the following content (see below for values to add from your installation JSON):
 
@@ -27,12 +31,21 @@ For the next-app's .env file, add the additional line:
 NEXTAUTH_SECRET="..." 
 ```
 
-with a securely generated secret string.
+with a securely generated secret string. For local testing you can use any random word. If running in production, ensure to create a secure randomly generated string, ideally more than 24 bytes long.
 
 ### Running the demo
 
-- From the [next-app](./next-app/) folder, run `npm run dev`. This will start your nextjs application on localhost:3000, where you can login to test out the browser login flow
-- To test the service account, run `npm start` from the [offline-service](./offline-service/) folder. This program will log out the retrieved content from the next-js api.
+- From the [next-app](./next-app/) folder, run:
+    1. `npm i`
+    2. `npm run dev`
+
+    This will intall node modules, and start your nextjs application on localhost:3000, where you can login to test out the browser login flow.
+
+- Once the app is running, you can test authenticating to it from the offline service. In another terminal, navigate to the [offline-service](./offline-service/) folder and run:
+    1. `npm i`
+    2. `npm start` 
+    
+    This program will use an access token from the service account to hit the next-app api route with a valid credential, and log the result to the console.
 
 ## About
 
