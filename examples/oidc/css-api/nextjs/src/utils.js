@@ -9,10 +9,11 @@ export const fetchCssApiCredentials = async () => {
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
         },
         body: postData,
-        next: {
-            revalidate: 3000
-        }
+        // next: {
+        //     revalidate: 3000
+        // },
+        cache: 'force-cache'
     }).then(res => res.json())
-
+    console.log(result)
     return result.access_token
 }

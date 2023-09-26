@@ -12,7 +12,7 @@ export default function useGetData(defaultData) {
             setLoadingData(true);
             const fetchedData = await fetch(url)
                 .then(res => {
-                    if (res.status >= 300) throw 'Request failure'
+                    if (res.status >= 400) throw 'Request failure'
                     return res.json()
                 })
             setData(fetchedData)

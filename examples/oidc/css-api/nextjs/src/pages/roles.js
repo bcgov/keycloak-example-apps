@@ -1,5 +1,6 @@
 import useGetData from '@/hooks/useGetData'
 import { useEffect, useState } from 'react';
+import RolesManagement from '@/components/roles/RolesManagement';
 
 export default function Roles() {
     const { data: integrations, loadingData: loadingIntegrations, apiError, fetchData: fetchIntegrations } = useGetData([]);
@@ -11,8 +12,8 @@ export default function Roles() {
     }, [])
 
     const handleIntegrationSelect = (e) => {
-        const thingy = JSON.parse(e.target.value)
-        setSelectedIntegration(thingy)
+        setSelectedEnvironment(null)
+        setSelectedIntegration(JSON.parse(e.target.value))
     }
 
     const handleEnvironmentChange = (e) => {
@@ -45,8 +46,8 @@ export default function Roles() {
             {integrations.data?.length && (
                 <div>
                     <label htmlFor='integration-select'>Select Integration</label>
-                    <select id='integration-select' onChange={handleIntegrationSelect}>
-                        <option disabled selected>Please select</option>
+                    <select id='integration-select' onChange={handleIntegrationSelect} defaultValue={'default'}>
+                        <option disabled value='default'>Please select</option>
                         {integrations.data.map(integration => (
                             <option key={integration.id} value={JSON.stringify(integration)}>{integration.projectName}</option>
                         ))}
@@ -58,27 +59,35 @@ export default function Roles() {
 
                             {selectedIntegration?.environments.includes('dev') && (
                                 <div>
-                                    <input type="radio" id="development-radio-btn" name="enviroment" value="dev" checked={selectedEnvironment === 'dev'}  onChange={handleEnvironmentChange}/>
+                                    <input type="radio" id="development-radio-btn" name="enviroment" value="dev" checked={selectedEnvironment === 'dev'} onChange={handleEnvironmentChange} />
                                     <label htmlFor="development-radio-btn">Dev</label>
                                 </div>
                             )}
 
                             {selectedIntegration?.environments.includes('test') && (
                                 <div>
-                                    <input type="radio" id="test-radio-btn" name="enviroment" value="test" checked={selectedEnvironment === 'test'}  onChange={handleEnvironmentChange}/>
+                                    <input type="radio" id="test-radio-btn" name="enviroment" value="test" checked={selectedEnvironment === 'test'} onChange={handleEnvironmentChange} />
                                     <label htmlFor="test-radio-btn">Test</label>
                                 </div>
                             )}
 
                             {selectedIntegration?.environments.includes('prod') && (
                                 <div>
-                                    <input type="radio" id="prod-radio-btn" name="enviroment" value="prod" checked={selectedEnvironment === 'prod'}  onChange={handleEnvironmentChange}/>
+                                    <input type="radio" id="prod-radio-btn" name="enviroment" value="prod" checked={selectedEnvironment === 'prod'} onChange={handleEnvironmentChange} />
                                     <label htmlFor="prod-radio-btn">Prod</label>
                                 </div>
                             )}
                         </fieldset>
                     )}
                 </div>
+            )}
+            {selectedEnvironment && selectedIntegration && (
+                <>
+                    <RolesManagement
+                        selectedEnvironment={selectedEnvironment}
+                        selectedIntegration={selectedIntegration}
+                    />
+                </>
             )}
         </>
     )
