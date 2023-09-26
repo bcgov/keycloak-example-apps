@@ -8,6 +8,7 @@ export default function RolesManagement({ selectedEnvironment, selectedIntegrati
     const [createRoleMessage, setCreateRoleMessage] = useState('');
     const roleFormRef = useRef(null);
 
+    // Whenever the selected environment or integration change, need to reset the role form and refetch roles.
     useEffect(() => {
         setCreateRoleMessage('');
         setNewRoleName('')
@@ -19,7 +20,6 @@ export default function RolesManagement({ selectedEnvironment, selectedIntegrati
         const valid = roleFormRef.current.checkValidity()
 
         if (valid) {
-            // TODO: Make not shit
             try {
                 setSavingRole(true);
                 setCreateRoleMessage('');

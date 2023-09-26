@@ -39,6 +39,8 @@ export default function Roles() {
         )
     }
 
+    const displayRoleManagement = selectedEnvironment && selectedIntegration
+
     return (
         <>
             <h2>Roles</h2>
@@ -53,6 +55,7 @@ export default function Roles() {
                         ))}
                     </select>
 
+                    {/* Only show environment select when an integration is already selected. */}
                     {selectedIntegration && (
                         <fieldset>
                             <legend>Select Environment:</legend>
@@ -81,7 +84,7 @@ export default function Roles() {
                     )}
                 </div>
             )}
-            {selectedEnvironment && selectedIntegration && (
+            {displayRoleManagement && (
                 <>
                     <RolesManagement
                         selectedEnvironment={selectedEnvironment}

@@ -10,7 +10,9 @@ Ensure to have npm and nodejs installed, with a version of node >= 18.0.0.
 
 ### Environment variable configuration
 
-To run this demo, you will require a CSS API account. From the CSS Application, navigate to to **My Dashboard**, and select the **My Teams** tab. If you do not have a team, you can create one. (Why do people need a team to do role management?). Once you have a team, select the CSS API Account tab below and create an API account.
+To run this demo, you will require a CSS API account. From the CSS Application, navigate to to **My Dashboard**, and select the **My Teams** tab. If you do not have a team, you can create one. Once you have a team, select the CSS API Account tab below and create an API account.
+
+**Note**: _While not required, you may want to add an integration or two to the team to be able to see them in the demo application._
 
 With the created account you can now click the download icon to get your credentials. Copy them into a .env file, following [.env.example](./.env.example), adding the values from the downloaded json as below:
 
@@ -26,13 +28,13 @@ SSO_API_URL=<tokenUrl>
     1. `npm i`
     2. `npm run dev`
 
-    This will intall node modules, and start your nextjs application on localhost:3000.
+    This will intall node modules, and start your nextjs application on localhost:3000. In the application, you can navigate through the integrations and roles tabs to see available information.
 
 ## About
 
-This example demonstrates how you can use our service to have an authenticated API that can accept logged in users via a web portal, but also allow additional server-side jobs to interact with the same API (e.g data scrapers, etl jobs) via a service account credential. It uses the [next-auth](https://next-auth.js.org/) package to handle user authentication and sessions, and the [jose](https://www.npmjs.com/package/jose) package to validate access tokens from a service account. 
+This example demonstrates how you can use the CSS API to view your team's integration information through your own application, instead of using the CSS portal. In this example, you can list your existing integrations, fetch integrations by ID, and list/create new roles. The full documentation for the CSS API can be [here](https://api.loginproxy.gov.bc.ca/openapi/swagger#).
 
 
 ## Security
 
-When using the service account, make sure that you check the audience claim matches your applications client id. Since you are in a shared realm, checking the audience is necessary to make sure other clients access tokens won't be read as valid.
+For easy environemnt setup, this example application has open routes for using the API. If building an admin portal, you can add authentication to this application as well using [next-auth](https://next-auth.js.org/).

@@ -1,5 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
+/**
+ * Hook to manage loading and error state on API get requests.
+ * 
+ * @param {*} defaultData Data to use before fetch is complete 
+ * @returns {Object} {data, loadingData, apiError, fetchData}
+ */
 export default function useGetData(defaultData) {
     const [data, setData] = useState(defaultData);
     const [loadingData, setLoadingData] = useState(false);
