@@ -14,13 +14,24 @@ interface Props {
 }
 
 const Home = ({ keycloak, kcConfig, setKcConfig, loginOptions, setLginOptions }: Props) => {
-  const handleLogin = () => keycloak?.login(loginOptions);
+  const handleLogin = () => {
+    // @ts-ignore
+    if(loginOptions.pres_req_conf_id){
+      var loginURL = keycloak?.createLoginUrl(loginOptions);
+      if(loginURL){
+         // @ts-ignore
+        window.location.href = loginURL + '&pres_req_conf_id=' + loginOptions.pres_req_conf_id;
+      };
+    }else{
+      keycloak?.login(loginOptions);
+    }
+  };
   const handleLogout = () => {
     window.location.href = `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${encodeURIComponent(
       `${kcConfig.url}/realms/${kcConfig.realm}/protocol/openid-connect/logout?post_logout_redirect_uri=` +
         loginOptions.redirectUri +
         '&id_token_hint=' +
-        keycloak.idToken,
+        keycloak.idToken, 
     )}`;
   };
   return (

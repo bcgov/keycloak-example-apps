@@ -109,6 +109,16 @@ export default function Configuration({ kcConfig, setKcConfig, loginOptions, set
               defaultValue={loginOptionsData?.scope}
             />
           </Form.Field>
+          <Form.Field>
+            <label>Verifiable Credential Configuration ID</label>
+            <Form.Input
+              placeholder=""
+              type="text"
+              onChange={handleLoginOptionsChange}
+              name="pres_req_conf_id"
+              defaultValue={loginOptionsData?.pres_req_conf_id}
+            />
+          </Form.Field>
           {/* <Form.Field>
             <label>PKCE Method</label>
             <Form.Input
