@@ -47,7 +47,7 @@ export default function Roles() {
             <p>Please select an integration and environment below for your role management.</p>
             {integrations.data?.length && (
                 <div>
-                    <label htmlFor='integration-select'>Select Integration</label>
+                    <label htmlFor='integration-select'>Select Integration: &nbsp;</label>
                     <select id='integration-select' onChange={handleIntegrationSelect} defaultValue={'default'}>
                         <option disabled value='default'>Please select</option>
                         {integrations.data.map(integration => (
@@ -86,6 +86,7 @@ export default function Roles() {
             )}
             {displayRoleManagement && (
                 <>
+                    <h2>Role Management</h2>
                     <RolesManagement
                         selectedEnvironment={selectedEnvironment}
                         selectedIntegration={selectedIntegration}

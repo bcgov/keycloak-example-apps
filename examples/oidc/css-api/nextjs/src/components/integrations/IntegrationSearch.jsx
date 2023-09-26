@@ -9,7 +9,6 @@ export default function IntegrationSearch() {
     const { data: integration, loadingData: loadingIntegration, apiError, fetchData: fetchIntegration } = useGetData(null);
     
     const handleChange = (e) => {
-        console.log(e.target.value)
         setIntegrationID(e.target.value)
     }
     
@@ -21,7 +20,7 @@ export default function IntegrationSearch() {
         <div>
             <h2>Integration Search</h2>
             <p><em>This component demonstrates using your CSS API integration to fetch a single integration by its ID. You can use an ID from the table above to test it out.</em></p>
-            <label for="integration-search">Integration ID:</label>
+            <label htmlFor="integration-search">Integration ID:</label>
             <input type="text" id="integration-search" value={integrationID} onChange={handleChange} />
             <button onClick={handleSearch}>Search</button>
             {integration?.id && (

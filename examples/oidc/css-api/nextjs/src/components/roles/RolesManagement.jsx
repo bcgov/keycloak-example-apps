@@ -56,7 +56,6 @@ export default function RolesManagement({ selectedEnvironment, selectedIntegrati
     if (loadingRoles) {
         return (
             <>
-                <h2>Role Management</h2>
                 <p>Loading roles...</p>
             </>
         )
@@ -71,7 +70,6 @@ export default function RolesManagement({ selectedEnvironment, selectedIntegrati
     return (
         <>
             <div>
-                <h2>Role Management</h2>
                 {noRolesFound ? (
                     <p>No roles exist for the selected integration and environment.</p>
                 ) : (
