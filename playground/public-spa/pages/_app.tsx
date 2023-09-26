@@ -35,6 +35,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       redirectUri: sso_redirect_uri,
       idpHint: '',
       scope: 'openid',
+      pres_req_conf_id: ''
     },
   );
 
