@@ -31,7 +31,7 @@ const Home = ({ keycloak, kcConfig, setKcConfig, loginOptions, setLginOptions }:
       `${kcConfig.url}/realms/${kcConfig.realm}/protocol/openid-connect/logout?post_logout_redirect_uri=` +
         loginOptions.redirectUri +
         '&id_token_hint=' +
-        keycloak.idToken,
+        keycloak.idToken, 
     )}`;
   };
   return (
