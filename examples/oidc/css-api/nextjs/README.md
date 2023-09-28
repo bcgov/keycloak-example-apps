@@ -22,13 +22,13 @@ SSO_CLIENT_SECRET=<clientSecret>
 SSO_TOKEN_URL=<tokenUrl>
 ```
 
-Add an additional variable for the CSS API url. If using the sandbox, add:
+Add an additional variable for the CSS API url to the end of the env file. If using the sandbox, add:
 
-`process.env.SSO_API_URL=https://api-dev.loginproxy.gov.bc.ca/api/v1/integrations`
+`SSO_API_URL=https://api-dev.loginproxy.gov.bc.ca/api/v1/integrations`
 
 If testing your actual team, add:
 
-`https://api.loginproxy.gov.bc.ca/api/v1/integrations`
+`SSO_API_URL=https://api.loginproxy.gov.bc.ca/api/v1/integrations`
 
 ### Running the demo
 
