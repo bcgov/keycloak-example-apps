@@ -6,10 +6,9 @@ async function handler(req, res) {
 
     // Get all integrations owned by the team.
     // See https://api.loginproxy.gov.bc.ca/openapi/swagger#/Integrations/get_integrations for details.
-    const integrations = await fetch('https://api-dev.loginproxy.gov.bc.ca/api/v1/integrations', {
+    const integrations = await fetch(process.env.SSO_API_URL, {
         headers: { authorization: `Bearer ${accessToken}` }
     }).then(res => res.json());
-
     res.status(200).json(integrations)
 }
 

@@ -16,7 +16,7 @@ export const fetchCssApiCredentials = async () => {
     postData.append('grant_type', 'client_credentials')
     postData.append('client_id', process.env.SSO_CLIENT_ID)
     postData.append('client_secret', process.env.SSO_CLIENT_SECRET)
-    const result = await fetch(process.env.SSO_API_URL, {
+    const result = await fetch(process.env.SSO_TOKEN_URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',

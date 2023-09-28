@@ -19,8 +19,16 @@ With the created account you can now click the download icon to get your credent
 ```
 SSO_CLIENT_ID=<clientId>
 SSO_CLIENT_SECRET=<clientSecret>
-SSO_API_URL=<tokenUrl>
+SSO_TOKEN_URL=<tokenUrl>
 ```
+
+Add an additional variable for the CSS API url. If using the sandbox, add:
+
+`process.env.SSO_API_URL=https://api-dev.loginproxy.gov.bc.ca/api/v1/integrations`
+
+If testing your actual team, add:
+
+`https://api.loginproxy.gov.bc.ca/api/v1/integrations`
 
 ### Running the demo
 

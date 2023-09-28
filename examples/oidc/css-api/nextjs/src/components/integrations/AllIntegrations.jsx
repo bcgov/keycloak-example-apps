@@ -29,12 +29,11 @@ export default function AllIntegrations() {
         <>
             {integrations.data?.length ? (
                 <>
-                    <h2>All Integrations</h2>
                     <p><em>This component demonstrates using your CSS API account to fetch all integrations owned by your team.</em></p>
                     <IntegrationsTable integrations={integrations.data} />
                 </>
             ) : (
-                <p>No integrations found</p>
+                <p>No integrations found. Add an integration to your team's account to test out this example app.</p>
             )}
         </>
     )

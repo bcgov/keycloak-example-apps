@@ -18,7 +18,6 @@ export default function IntegrationSearch() {
 
     return (
         <div>
-            <h2>Integration Search</h2>
             <p><em>This component demonstrates using your CSS API integration to fetch a single integration by its ID. You can use an ID from the table above to test it out.</em></p>
             <label htmlFor="integration-search">Integration ID:</label>
             <input type="text" id="integration-search" value={integrationID} onChange={handleChange} />

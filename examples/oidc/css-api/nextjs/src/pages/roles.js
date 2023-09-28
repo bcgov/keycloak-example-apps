@@ -39,6 +39,15 @@ export default function Roles() {
         )
     }
 
+    if (!integrations?.data?.length) {
+        return (
+            <>
+                <h2>Roles</h2>
+                <p>No integrations found for your team/s account. Add an integration to your team to test out this app.</p>
+            </>
+        )
+    }
+
     const displayRoleManagement = selectedEnvironment && selectedIntegration
 
     return (

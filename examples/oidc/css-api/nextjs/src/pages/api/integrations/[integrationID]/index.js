@@ -6,7 +6,7 @@ async function handler(req, res) {
 
     // Get a specific integration's details.
     // See https://api.loginproxy.gov.bc.ca/openapi/swagger#/Integrations/get_integrations__integrationId_ for details.
-    const integrations = await fetch(`https://api-dev.loginproxy.gov.bc.ca/api/v1/integrations/${integrationID}`, {
+    const integrations = await fetch(`${process.env.SSO_API_URL}/${integrationID}`, {
         headers: { authorization: `Bearer ${accessToken}` }
     }).then(res => res.json());
 
