@@ -1,5 +1,4 @@
-import styles from '@/styles/Home.module.css'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import useGetData from '@/hooks/useGetData'
 import IntegrationsTable from './IntegrationsTable'
 
@@ -19,7 +18,7 @@ export default function AllIntegrations() {
     if (apiError) {
         return (
             <>
-                <p>Failed to fetch integrations. Click below to try again</p>
+                <p>Failed to fetch integrations (status code {apiError}). Click below to try again</p>
                 <button onClick={() => fetchIntegrations('/api/integrations')}>Fetch Integrations</button>
             </>
         )

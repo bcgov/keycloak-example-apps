@@ -63,7 +63,7 @@ export default function RolesManagement({ selectedEnvironment, selectedIntegrati
 
     if (fetchRolesError) {
         return (
-            <p>Error fetching role information.</p>
+            <p>Error fetching role information (status code {fetchRolesError}).</p>
         )
     }
 

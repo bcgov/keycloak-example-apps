@@ -34,7 +34,7 @@ export default function Roles() {
         return (
             <>
                 <h2>Roles</h2>
-                <p>Failed to load integration details. Please refresh.</p>
+                <p>Failed to load integration details (api failed with status code {apiError}).</p>
             </>
         )
     }

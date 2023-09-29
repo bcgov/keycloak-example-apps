@@ -1,5 +1,4 @@
-import styles from '@/styles/Home.module.css'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import useGetData from '@/hooks/useGetData'
 import IntegrationsTable from './IntegrationsTable';
 
@@ -33,7 +32,7 @@ export default function IntegrationSearch() {
                 <p>{integration.message}</p>
             )}
             {apiError && (
-                <p>API Error try again :( </p>
+                <p>API Error (status code {apiError}) </p>
             )}
             {loadingIntegration && (
                 <p>Loading...</p>

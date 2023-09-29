@@ -18,12 +18,12 @@ export default function useGetData(defaultData) {
             setLoadingData(true);
             const fetchedData = await fetch(url)
                 .then(res => {
-                    if (res.status >= 400) throw 'Request failure'
+                    if (res.status >= 400) throw res.status
                     return res.json()
                 })
             setData(fetchedData)
-        } catch {
-            setApiError(true)
+        } catch (e) {
+            setApiError(Number.isInteger(e) ? e : 500)
         } finally {
             setLoadingData(false)
         }

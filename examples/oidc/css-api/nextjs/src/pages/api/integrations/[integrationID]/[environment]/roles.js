@@ -1,4 +1,4 @@
-import { fetchCssApiCredentials, apiErrorHandler } from '@/utils'
+import { fetchCssApiCredentials, apiErrorHandler, handleStatusError } from '@/utils'
 
 async function handler(req, res) {
     const { integrationID, environment } = req.query
@@ -10,8 +10,8 @@ async function handler(req, res) {
         const roles = await fetch(`${process.env.SSO_API_URL}/${integrationID}/${environment}/roles`, {
             headers: { authorization: `Bearer ${accessToken}` }
         })
+        .then(handleStatusError)
         .then(res => res.json())
-
         res.status(200).json(roles)
     }
 

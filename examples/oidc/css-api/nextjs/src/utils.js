@@ -28,7 +28,7 @@ export const fetchCssApiCredentials = async () => {
 }
 
 /**
- * A catchall error handler.
+ * A catchall error handler. If a status code is thrown internally, return it. Otherwise catch with 500.
  * @param {function} handler - An api route handler.
  * @returns {function} - Handler wrapped with generic error handler.
  */
@@ -37,8 +37,24 @@ export function apiErrorHandler(handler) {
         try {
             await handler(req, res)
         } catch (e) {
-            console.info(`[${req.method}] - ${req.url}: Encountered internal error ${e}`)
-            res.status(500).send('Internal Server Error')
+            if (Number.isInteger(e)) {
+                res.status(e).send()
+            } else {
+                console.info(`[${req.method}] - ${req.url}: Encountered internal error ${e}`)
+                res.status(500).send('Internal Server Error')
+            }
         }
+    }
+}
+
+/**
+ * Handle fetch status codes >= 400. Throw the status code to be caught by the generic handler.
+ * @param {result} - A result from the fetch API
+ */
+export async function handleStatusError(apiResult) {
+    if (apiResult.status >= 400) {
+        throw apiResult.status
+    } else {
+        return apiResult
     }
 }
