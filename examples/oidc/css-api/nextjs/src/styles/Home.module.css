@@ -1,0 +1,13 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 2rem 6rem 0 6rem;
+  min-height: 100vh;
+  row-gap: 1rem;
+}
+
+.main > h2 {
+  margin: 0;
+}
