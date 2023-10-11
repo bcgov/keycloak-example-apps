@@ -1,6 +1,8 @@
 import useGetData from '@/hooks/useGetData'
 import { useEffect, useState } from 'react';
 import RolesManagement from '@/components/roles/RolesManagement';
+import UserAssignment from '@/components/roles/UserAssignment';
+import styles from '@/styles/Roles.module.css'
 
 export default function Roles() {
     const { data: integrations, loadingData: loadingIntegrations, apiError, fetchData: fetchIntegrations } = useGetData([]);
@@ -96,10 +98,15 @@ export default function Roles() {
             {displayRoleManagement && (
                 <>
                     <h2>Role Management</h2>
-                    <RolesManagement
-                        selectedEnvironment={selectedEnvironment}
-                        selectedIntegration={selectedIntegration}
-                    />
+                    <div className={styles.container}>
+                        <RolesManagement
+                            selectedEnvironment={selectedEnvironment}
+                            selectedIntegration={selectedIntegration}
+                        />
+                        <UserAssignment
+                            selectedEnvironment={selectedEnvironment}
+                        />
+                    </div>
                 </>
             )}
         </>

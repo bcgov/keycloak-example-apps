@@ -7,7 +7,7 @@ async function handler(req, res) {
     // Get all roles for a given integration and Environment. 
     // See https://api.loginproxy.gov.bc.ca/openapi/swagger#/Roles/get_integrations__integrationId___environment__roles for details.
     if (req.method === 'GET') {
-        const roles = await fetch(`${process.env.SSO_API_URL}/${integrationID}/${environment}/roles`, {
+        const roles = await fetch(`${process.env.SSO_API_URL}/integrations/${integrationID}/${environment}/roles`, {
             headers: { authorization: `Bearer ${accessToken}` }
         })
         .then(handleStatusError)
@@ -18,7 +18,7 @@ async function handler(req, res) {
     // Create a new role in the provided integration and environment.
     // See https://api.loginproxy.gov.bc.ca/openapi/swagger#/Roles/post_integrations__integrationId___environment__roles for details.
     else if (req.method === 'POST') {
-        const roles = await fetch(`${process.env.SSO_API_URL}/${integrationID}/${environment}/roles`, {
+        const roles = await fetch(`${process.env.SSO_API_URL}/integrations/${integrationID}/${environment}/roles`, {
             headers: {
                 authorization: `Bearer ${accessToken}`,
                 'Content-Type': 'application/json',

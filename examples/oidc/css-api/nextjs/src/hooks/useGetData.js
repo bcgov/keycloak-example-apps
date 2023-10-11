@@ -22,6 +22,7 @@ export default function useGetData(defaultData) {
                     return res.json()
                 })
             setData(fetchedData)
+            return fetchedData
         } catch (e) {
             setApiError(Number.isInteger(e) ? e : 500)
         } finally {
@@ -29,5 +30,5 @@ export default function useGetData(defaultData) {
         }
     }
 
-    return {data, loadingData, apiError, fetchData}
+    return {data, loadingData, apiError, fetchData, setData}
 }
