@@ -1,7 +1,7 @@
 import useGetData from '@/hooks/useGetData'
 import { useEffect, useState } from 'react';
 import RolesManagement from '@/components/roles/RolesManagement';
-import UserAssignment from '@/components/roles/UserAssignment';
+import UserSearch from '@/components/roles/UserSearch';
 import styles from '@/styles/Roles.module.css'
 
 export default function Roles() {
@@ -103,7 +103,7 @@ export default function Roles() {
                             selectedEnvironment={selectedEnvironment}
                             selectedIntegration={selectedIntegration}
                         />
-                        <UserAssignment
+                        <UserSearch
                             selectedEnvironment={selectedEnvironment}
                         />
                     </div>

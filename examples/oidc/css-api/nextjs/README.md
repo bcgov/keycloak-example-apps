@@ -24,11 +24,11 @@ SSO_TOKEN_URL=<tokenUrl>
 
 Add an additional variable for the CSS API url to the end of the env file. If using [the sandbox application](https://bcgov.github.io/sso-requests-sandbox), add:
 
-`SSO_API_URL=https://api-dev.loginproxy.gov.bc.ca/api/v1/integrations`
+`SSO_API_URL=https://api-dev.loginproxy.gov.bc.ca/api/v1`
 
 If using the [sso-requests app](https://bcgov.github.io/sso-requests), instead add:
 
-`SSO_API_URL=https://api.loginproxy.gov.bc.ca/api/v1/integrations`
+`SSO_API_URL=https://api.loginproxy.gov.bc.ca/api/v1`
 
 ### Running the demo
 

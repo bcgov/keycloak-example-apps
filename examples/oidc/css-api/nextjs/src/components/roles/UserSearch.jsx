@@ -2,7 +2,7 @@ import { useState } from "react";
 import useGetData from "@/hooks/useGetData";
 import styles from '@/styles/Users.module.css'
 
-export default function UserAssignment({ selectedEnvironment }) {
+export default function UserSearch({ selectedEnvironment }) {
     const { data: users, loadingData: loadingUsers, apiError: fetchUsersError, fetchData: fetchUsers } = useGetData(null);
     const [userIDs, setUserIDs] = useState(null);
     const [notFound, setNotFound] = useState(false);
