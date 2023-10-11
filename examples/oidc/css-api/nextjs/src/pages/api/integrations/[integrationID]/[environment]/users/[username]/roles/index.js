@@ -1,4 +1,4 @@
-import { fetchCssApiCredentials, apiErrorHandler, handleStatusError } from '@/utils'
+import { fetchCssApiCredentials, apiErrorHandler } from '@/utils'
 
 async function handler(req, res) {
     const { integrationID, environment, username } = req.query
