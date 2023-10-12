@@ -1,0 +1,7 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5rem;
+    row-gap: 1em;
+    width: 400px
+}  

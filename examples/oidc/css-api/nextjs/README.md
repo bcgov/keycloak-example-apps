@@ -24,11 +24,11 @@ SSO_TOKEN_URL=<tokenUrl>
 
 Add an additional variable for the CSS API url to the end of the env file. If using [the sandbox application](https://bcgov.github.io/sso-requests-sandbox), add:
 
-`SSO_API_URL=https://api-dev.loginproxy.gov.bc.ca/api/v1/integrations`
+`SSO_API_URL=https://api-dev.loginproxy.gov.bc.ca/api/v1`
 
 If using the [sso-requests app](https://bcgov.github.io/sso-requests), instead add:
 
-`SSO_API_URL=https://api.loginproxy.gov.bc.ca/api/v1/integrations`
+`SSO_API_URL=https://api.loginproxy.gov.bc.ca/api/v1`
 
 ### Running the demo
 
@@ -44,7 +44,6 @@ This example demonstrates how you can use the CSS API to view your team's integr
 
 **CSS API account VS service account**: 
 A CSS API account will create an additional client with service accounts enabled, similar to the service account option when creating a new integration. However, a normal service account will only provide an access token similar to a logged in user. This is best used in cases where you have an offline job (meaning there is no authenticated user when the job is running) that requires a valid access token to authenticate against another one of your services. A CSS API account's access token will have an extra `team` attribute on it, equal to that accounts team ID. This allows our API to [check](https://github.com/bcgov/sso-requests/blob/dev/lambda/css-api/src/authenticate.ts#L66) that the token has the correct access level to view and manage integrations related to that team. So if you need to use our API, you need an API account.
-
 
 ## Security
 
