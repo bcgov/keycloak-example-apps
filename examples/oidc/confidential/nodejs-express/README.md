@@ -16,7 +16,7 @@ This is an example backend app that authenticates users using OAuth 2.0 standard
 - Update below required values and add them to a `.env` file and save it in project directory
 
   ```sh
-  SSO_SESSION_SECRET=
+  SSO_SESSION_SECRET=s3cr3t
   SSO_AUTH_SERVER_URL=https://dev.loginproxy.gov.bc.ca/auth
   SSO_REALM=
   SSO_CLIENT_ID=
