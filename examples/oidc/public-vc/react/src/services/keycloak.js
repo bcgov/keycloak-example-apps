@@ -36,13 +36,10 @@ export const initializeKeycloak = async () => {
     });
 
     if (auth) {
-      console.log("Got here?")
       return _kc;
     } else {
-      console.log(loginOptions)
       if(loginOptions.pres_req_conf_id){
         var loginURL = _kc?.createLoginUrl(loginOptions);
-        console.log(loginURL)
         if(loginURL){
           /* The keycloak-js library will not pass in the `pres_req_conf_id` needed for VC login
           meaning the login url must have it appended.  */
