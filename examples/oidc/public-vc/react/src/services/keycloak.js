@@ -60,7 +60,7 @@ export const initializeKeycloak = async () => {
 // if using post_logout_redirect_uri, then either client_id or id_token_hint has to be included and post_logout_redirect_uri need to match
 // one of valid post logout redirect uris in the client configuration
 export const logout = () => {
-  window.location.href = `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${encodeURIComponent(
+  window.location.href = `${process.env.REACT_APP_SITEMINDER_LOGOUT}?retnow=1&returl=${encodeURIComponent(
     `${process.env.REACT_APP_SSO_AUTH_SERVER_URL}/realms/${process.env.REACT_APP_SSO_REALM}/protocol/openid-connect/logout?post_logout_redirect_uri=` +
       process.env.REACT_APP_SSO_REDIRECT_URI +
       '&id_token_hint=' +

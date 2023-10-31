@@ -27,6 +27,7 @@ This example specifically uses the verified-email, Verified Credential.  Creatin
   REACT_APP_SSO_REALM=standard
   REACT_APP_SSO_CLIENT_ID=
   REACT_APP_PRES_REQ_CONF_ID=verified-email
+  REACT_APP_SITEMINDER_LOGOUT=https://logon7.gov.bc.ca/clp-cgi/logoff.cgi
   ```
 
 In the project directory, you can run either `yarn` or `npm` commands:
