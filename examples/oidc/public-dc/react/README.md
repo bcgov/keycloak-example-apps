@@ -1,20 +1,20 @@
-# SSO Pathfinder Public VC Client Using React
+# SSO Pathfinder Public Digital Credential Client Using React
 
 ## Description
 
-This is an example react app that authenticates users using OAuth 2.0 standard flow with PKCE, with VC integration.  It is identical to the none-VC integration with one exception, the login redirect url has one aditional environment variable passed in. See the `keycloak-example-apps/examples/oidc/public-vc/react/src/services/keycloak.js` file.
+This is an example react app that authenticates users using OAuth 2.0 standard flow with PKCE, with DC integration.  It is identical to the none-DC integration with one exception, the login redirect url has one aditional environment variable passed in. See the `keycloak-example-apps/examples/oidc/public-dc/react/src/services/keycloak.js` file.
 
 ## Getting Started
 
 ## Pre-requisites
 
-Currently VC is only available in the [Sandbox CSS](https://bcgov.github.io/sso-requests-sandbox) offering, production CSS VC integration coming soon.  
+Currently DC is only available in the [Sandbox CSS](https://bcgov.github.io/sso-requests-sandbox) offering, production CSS DC integration coming soon.  
 
-This example specifically uses the verified-email, Verified Credential.  Creating defferent one will require reaching out to the VC team.
+This example specifically uses the verified-email, Verified Credential.  Creating defferent one will require reaching out to the DC team.
 
 - You require an integration before you can start using this example app
 - Navigate to [SSO Onboarding](https://github.com/bcgov/sso-keycloak/wiki/SSO-Onboarding) to know more about creating an integration
-- Create an integration with VC as one of the selected IDPs
+- Create an integration with DC as one of the selected IDPs
 - Install the BC Wallet on your mobile device [Demo Instructions](https://github.com/bcgov/vc-authn-oidc/blob/main/docs/DemoInstructions.md)
 
 ## Installing

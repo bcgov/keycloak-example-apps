@@ -41,13 +41,13 @@ export const initializeKeycloak = async () => {
       if(loginOptions.pres_req_conf_id){
         var loginURL = _kc?.createLoginUrl(loginOptions);
         if(loginURL){
-          /* The keycloak-js library will not pass in the `pres_req_conf_id` needed for VC login
+          /* The keycloak-js library will not pass in the `pres_req_conf_id` needed for DC login
           meaning the login url must have it appended.  */
           // @ts-ignore//
           window.location.href = loginURL + '&pres_req_conf_id=' + loginOptions.pres_req_conf_id;
         };
       } else {
-        console.warn("VC needs a REACT_APP_PRES_REQ_CONF_ID env variable defined to work properly");
+        console.warn("DC needs a REACT_APP_PRES_REQ_CONF_ID env variable defined to work properly");
         _kc.login(loginOptions);
       }
     }
