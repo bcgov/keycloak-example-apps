@@ -110,7 +110,7 @@ export default function Configuration({ kcConfig, setKcConfig, loginOptions, set
             />
           </Form.Field>
           <Form.Field>
-            <label>Verifiable Credential Configuration ID</label>
+            <label>Digital Credential Configuration ID</label>
             <Form.Input
               placeholder=""
               type="text"
