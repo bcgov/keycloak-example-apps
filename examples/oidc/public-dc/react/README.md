@@ -17,6 +17,8 @@ This example specifically uses the verified-email, Verified Credential.  Creatin
 - Create an integration with DC as one of the selected IDPs
 - Install the BC Wallet on your mobile device [Demo Instructions](https://github.com/bcgov/vc-authn-oidc/blob/main/docs/DemoInstructions.md)
 
+Note: the redirect uri for your integration must match that of the example app you are running.  For a local deployment that would be `http://localhost:3000`.
+
 ## Installing
 
 - Update below required values and add them to a `.env` file and save it in project directory. A `.env-example` file it there and can be copied and renamed.
