@@ -10,7 +10,7 @@ This is an example react app that authenticates users using OAuth 2.0 standard f
 
 Currently DC is only available in the [Sandbox CSS](https://bcgov.github.io/sso-requests-sandbox) offering, production CSS DC integration coming soon.  
 
-This example specifically uses the verified-email, Verified Credential.  Creating a different one will require reaching out to the DC team.
+This example specifically uses the verified-email, Digital Credential.  Creating a different one will require reaching out to the DC team.
 
 - You require an integration before you can start using this example app
 - Navigate to [SSO Onboarding](https://github.com/bcgov/sso-keycloak/wiki/SSO-Onboarding) to know more about creating an integration
