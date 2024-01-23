@@ -19,3 +19,8 @@ We have two example apps, which are single-page applications (SPAs) written usin
 ### Confidential
 
 We have one example app written using `nodejs` and `express`, which is placed under `./examples/oidc/confidential` folder. This is a backend application that runs on a server. To run this example app, you will need a confidential keycloak client and you can find all the instructions to run the app in a `README.md` file under the example app directory
+
+
+### Documentation
+
+Visit our [technical documentation page](https://bcgov.github.io/sso-docs/) for more information
