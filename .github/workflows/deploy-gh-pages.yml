@@ -21,7 +21,7 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1
+        uses: actions/checkout@v4
 
       - name: Install and Build
         run: |
@@ -32,7 +32,7 @@ jobs:
         working-directory: ./playground/public-spa
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.4
+        uses: JamesIves/github-pages-deploy-action@4
         with:
           branch: ${{ env.DEPLOY_REPO_BRANCH }}
           folder: ./playground/public-spa/out
@@ -40,7 +40,7 @@ jobs:
       - name: Create Release
         if: github.ref == 'refs/heads/main'
         id: release
-        uses: rymndhng/release-on-push-action@v0.20.0
+        uses: rymndhng/release-on-push-action@v0.28.0
         with:
           bump_version_scheme: patch
           tag_prefix: v
