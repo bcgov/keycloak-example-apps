@@ -10,14 +10,14 @@ This is an example react app that authenticates users using OAuth 2.0 standard f
 
 Currently DC is only available in the [Sandbox CSS](https://bcgov.github.io/sso-requests-sandbox) offering, production CSS DC integration coming soon.  
 
-This example specifically uses the verified-email, Digital Credential.  Creating a different one will require reaching out to the DC team.
+This example specifically uses the showcase-demo, Digital Credential.  Creating a different one will require reaching out to the DC team.
 
 - You require an integration before you can start using this example app
 - Navigate to [SSO Onboarding](https://github.com/bcgov/sso-keycloak/wiki/SSO-Onboarding) to know more about creating an integration
 - Create an integration with DC as one of the selected IDPs
-- Install the BC Wallet on your mobile device [Demo Instructions](https://github.com/bcgov/vc-authn-oidc/blob/main/docs/DemoInstructions.md)
+- Install the BC Wallet on your mobile device [Demo Instructions](https://digital.gov.bc.ca/digital-trust/showcase/demo)
 - This example should only be used in Dev/Test when testing.
-- Must ensure the email address you are testing with is registered with this [email verification service](https://email-verification.vonx.io/)
+- Must ensure the Joyce person credential is added to your BC Wallet. Please read [here](https://digital.gov.bc.ca/digital-trust/showcase/demo)  **and stay tuned as the DC team provides a link to additional material**
 
 Note: the redirect uri for your integration must match that of the example app you are running.  For a local deployment that would be `http://localhost:3000/*`.
 
@@ -30,7 +30,7 @@ Note: the redirect uri for your integration must match that of the example app y
   REACT_APP_SSO_AUTH_SERVER_URL=https://dev.sandbox.loginproxy.gov.bc.ca/auth
   REACT_APP_SSO_REALM=standard
   REACT_APP_SSO_CLIENT_ID=
-  REACT_APP_PRES_REQ_CONF_ID=verified-email
+  REACT_APP_PRES_REQ_CONF_ID=showcase-demo
   REACT_APP_SITEMINDER_LOGOUT=https://logon7.gov.bc.ca/clp-cgi/logoff.cgi
   ```
 
