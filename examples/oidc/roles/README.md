@@ -2,25 +2,26 @@
 
 ## Description
 
-This is an example backend app that authenticates users using OAuth 2.0 standard flow, and helps the user to check their roles
+This is an example backend app that authenticates users using OAuth 2.0 standard flow and helps the user check their roles
 
 ## Getting Started
 
 ## Pre-requisites
 
-- You require an integration with client type `confidential` before you can start using this example app
-- Navigate to [SSO Onboarding](https://github.com/bcgov/sso-keycloak/wiki/SSO-Onboarding) to know more about creating an integration
+- You require an integration with client-type `confidential` before you can start using this example app
+- Navigate to SSO [Onboarding Guide](https://github.com/bcgov/sso-keycloak/wiki/SSO-Onboarding) to learn more about creating an integration
+- After successfully creating an integration through [CSS](https://bcgov.github.io/sso-requests) app, select the integration and under the `Technical Details` tab, click any available environment (Development, Test, Production) button to download a JSON file that contains your integration details
 
-## Installing
+## Installation
 
-- Update the required values below and add them to a `.env` file in the project directory and save it .
+- Copy and update the below values to a `.env` file in the project directory and save it.
 
   ```sh
-  SSO_SESSION_SECRET=
+  SSO_SESSION_SECRET=somesecret
   SSO_AUTH_SERVER_URL=https://dev.loginproxy.gov.bc.ca/auth
   SSO_REALM=standard
-  SSO_CLIENT_ID=
-  SSO_CLIENT_SECRET=
+  SSO_CLIENT_ID=<resource value from JSON>
+  SSO_CLIENT_SECRET=<credentials.secret value from JSON>
   SSO_LOGOUT_REDIRECT_URI=http://localhost:3000
   ```
 
