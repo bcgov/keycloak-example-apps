@@ -9,7 +9,7 @@ This is an example backend app that authenticates users using OpenID-Connect sta
 ## Pre-requisites
 
 - You require an integration with client-type `confidential` before you can start using this example app
-- Navigate to SSO [Onboarding Guide](https://github.com/bcgov/sso-keycloak/wiki/SSO-Onboarding) to learn more about creating an integration
+- Navigate to [SSO Onboarding Guide](https://github.com/bcgov/sso-keycloak/wiki/SSO-Onboarding) to learn more about creating an integration
 - Once you've successfully set up an integration via the CSS app, select your integration in the dashboard and access the `Technical Details` tab. From there, simply choose the desired environment (Development, Test, or Production) and click the corresponding button to download a JSON file containing your integration details.
 
 ## Installation
