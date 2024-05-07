@@ -15,6 +15,7 @@ This example specifically uses the showcase demo, Digital Credential. Creating a
 - You require an integration before you can start using this example app
 - Navigate to [SSO Onboarding Guide](https://github.com/bcgov/sso-keycloak/wiki/SSO-Onboarding) to know more about creating an integration
 - Create an integration with DC as one of the selected IDPs
+- When creating the integration request add `http://localhost:3000/*` to the list of valid redirect URIs for your integration.
 - Install the BC Wallet on your mobile device [Demo Instructions](https://digital.gov.bc.ca/digital-trust/showcase/demo)
 - This example should only be used in Dev/Test when testing.
 - Must ensure the Joyce person credential is added to your BC Wallet. Please read [here](https://digital.gov.bc.ca/digital-trust/showcase/demo) **and stay tuned as the DC team provides a link to additional material**
