@@ -2,7 +2,7 @@
 
 ## Description
 
-This is an example backend app that authenticates users using OAuth 2.0 standard flow and helps the user check their roles
+This is an example backend app that authenticates users using OpenID-Connect standard flow and helps the user check their roles
 
 ## Getting Started
 
@@ -10,7 +10,7 @@ This is an example backend app that authenticates users using OAuth 2.0 standard
 
 - You require an integration with client-type `confidential` before you can start using this example app
 - Navigate to SSO [Onboarding Guide](https://github.com/bcgov/sso-keycloak/wiki/SSO-Onboarding) to learn more about creating an integration
-- After successfully creating an integration through [CSS](https://bcgov.github.io/sso-requests) app, select the integration and under the `Technical Details` tab, click any available environment (Development, Test, Production) button to download a JSON file that contains your integration details
+- Once you've successfully set up an integration via the CSS app, select your integration on the dashboard and access the `Technical Details` tab. From there, simply choose the desired environment (Development, Test, or Production) and click the corresponding button to download a JSON file containing your integration details.
 
 ## Installation
 
