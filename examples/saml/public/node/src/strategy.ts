@@ -15,11 +15,10 @@ export class SamlStrategy {
       {
         audience: samlStrategyConfig.entityId,
         issuer: samlStrategyConfig.entityId,
-        callbackUrl: `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}/login/callback`,
+        callbackUrl: `${process.env.APP_URI}/login/callback`,
         entryPoint: samlStrategyConfig.signOnUrl,
         cert: samlStrategyConfig.x509Cert,
         logoutUrl: samlStrategyConfig.logoutUrl,
-        //logoutCallbackUrl: `http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}/logout/callback`,
         signatureAlgorithm: 'sha256',
       },
       (profile: any, done: any) => {
