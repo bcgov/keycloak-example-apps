@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "npx tsc",
+    "build": "npx tsc && cpx 'src/views/**' 'dist/views'",
     "start": "node dist/server.js",
     "copy-assets": "cp src/*.pem dist && cp -r src/views dist",
     "dev": " yarn run copy-assets && concurrently \"npx tsc --watch\" \"nodemon -q dist/server.js\"",
@@ -13,6 +13,7 @@
     "body-parser": "^1.20.2",
     "cookie": "^0.5.0",
     "cookie-parser": "^1.4.6",
+    "cpx": "^1.5.0",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
@@ -23,6 +24,7 @@
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.7",
     "@types/express": "^4.17.17",
     "@types/express-session": "^1.17.6",
     "@types/node": "^18.14.6",
@@ -30,5 +32,9 @@
     "concurrently": "^7.6.0",
     "nodemon": "^2.0.21",
     "typescript": "^4.9.5"
+  },
+  "engines": {
+    "npm": ">=8.0.0",
+    "node": ">=18.0.0"
   }
 }
