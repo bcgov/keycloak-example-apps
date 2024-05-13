@@ -8,10 +8,11 @@ import path from 'path';
 import * as dotenv from 'dotenv';
 import { SamlStrategy } from './strategy';
 import { formatXml } from './utils';
+import cookieParser from 'cookie-parser';
 
 dotenv.config();
 const app = express();
-let samlFormInputs = {};
+let samlFormInputs = { signOnUrl: '', logoutUrl: '', entityId: '', x509Cert: '' };
 let samlResponse = '';
 
 passport.serializeUser<Express.User>((user: any, done) => {
@@ -48,12 +49,19 @@ app.use(
   }),
 );
 
+declare module 'express-session' {
+  interface SessionData {
+    samlFormInputs: any;
+  }
+}
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(passport.initialize({}));
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cookieParser());
 //passport.use('samlStrategy', samlStrategy);
 
 app.use((req, res, next) => {
@@ -70,12 +78,13 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  res.render('index', { user: req.user, inputs: samlFormInputs, samlResponse });
+  console.log(req.session);
+  res.render('index', { user: req.user, inputs: req.cookies['samlFormInputs'] || samlFormInputs, samlResponse });
 });
 
 app.post('/login', (req, res) => {
-  samlFormInputs = { ...req.body };
   passportSamlStrategy.createStrategy({ ...req.body });
+  res.cookie('samlFormInputs', { ...req.body }, { maxAge: 900000, httpOnly: true });
   passport.authenticate(passportSamlStrategy.getStrategy(), {
     failureFlash: true,
     successRedirect: '/',

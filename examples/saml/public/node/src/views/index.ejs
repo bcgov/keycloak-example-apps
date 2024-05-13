@@ -13,7 +13,7 @@
             <div class="form-group">
               <label for="signOnUrl" class="form-label">SSO Service URL</label>
               <input
-                type="text"
+                type="url"
                 class="form-control"
                 id="signOnUrl"
                 name="signOnUrl"
@@ -24,7 +24,7 @@
             <div class="form-group">
               <label for="logoutUrl" class="form-label">Logout URL</label>
               <input
-                type="text"
+                type="url"
                 class="form-control"
                 id="logoutUrl"
                 name="logoutUrl"
@@ -45,8 +45,8 @@
             </div>
             <div class="form-group">
               <label for="x509Cert" class="form-label">X.509 Certificate</label>
-              <textarea id="x509Cert" cols="30" rows="10" class="form-control" name="x509Cert" required>
-    <%- inputs?.x509Cert %></textarea
+              <textarea id="x509Cert" cols="50" rows="10" class="form-control" name="x509Cert" required>
+<%- inputs?.x509Cert %></textarea
               >
             </div>
             <br />
