@@ -32,7 +32,7 @@ jobs:
         working-directory: ./playground/public-spa
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: ${{ env.DEPLOY_REPO_BRANCH }}
           folder: ./playground/public-spa/out
