@@ -72,7 +72,6 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-  console.log(req.session);
   res.render('index', { user: req.user, inputs: req.cookies['samlFormInputs'] || samlFormInputs, samlResponse });
 });
 
@@ -92,7 +91,6 @@ app.post('/login/callback', (req: any, res, next) => {
     successRedirect: '/',
     failureFlash: true,
   })(req, res);
-  //console.log(req);
 });
 
 app.get('/logout', (req: any, res, next) => {
