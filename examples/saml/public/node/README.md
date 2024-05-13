@@ -34,3 +34,9 @@ The page will reload when you make changes.
 - You may see `Logout Failed` error when attempting to logout
 - The logout functionality does not work due to limitation of access in updating `Logout Service POST Binding URL` under `Fine Grain SAML Endpoint Configuration` settings of the client
 - Login to keycloak and manually update the setting with value `http://localhost:8080/logout/callback`. **Note: Update the host and port if different**
+
+## Deployments
+
+- Navigate to saml-playground helm chart is located at `https://github.com/bcgov/sso-helm-charts`
+- Login to Openshift using `oc` CLI
+- Run `helm upgrade --install saml-playground ./charts/saml-playground -n <NAMESPACE> -f values.yaml`
