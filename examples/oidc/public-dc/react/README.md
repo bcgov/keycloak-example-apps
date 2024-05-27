@@ -8,7 +8,7 @@ This is an example react app that authenticates users using OAuth 2.0 standard f
 
 ## Pre-requisites
 
-Currently, DC is only available in the [Sandbox CSS](https://bcgov.github.io/sso-requests-sandbox) offering, production CSS DC integration coming soon.
+Currently, Digital Credential (DC) is available in our standard service offering in our [CSS App](https://bcgov.github.io/sso-requests)
 
 This example specifically uses the showcase demo, Digital Credential. Creating a different one will require reaching out to the DC team.
 
