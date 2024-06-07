@@ -17,8 +17,10 @@ This example specifically uses the showcase demo, Digital Credential. Creating a
 - Create an integration with DC as one of the selected IDPs
 - When creating the integration request add `http://localhost:3000/*` to the list of valid redirect URIs for your integration.
 - Install the BC Wallet on your mobile device [Demo Instructions](https://digital.gov.bc.ca/digital-trust/showcase/demo)
-- This example should only be used in Dev/Test when testing.
-- Must ensure the Joyce person credential is added to your BC Wallet. Please read [here](https://digital.gov.bc.ca/digital-trust/showcase/demo) **and stay tuned as the DC team provides a link to additional material**
+- This example should only be used in Dev/Test when testing:
+   - At the time of writing this update, please use the `sso-pathfinder-1` credential for dev/test 
+   - By September 2024 we anticipate you can use the the `showcase-demo` credential where you add the `Joyce person credential` to your BC Wallet. Please read [here](https://digital.gov.bc.ca/digital-trust/showcase/demo)
+- **stay tuned as the DC team provides a link to additional material**
 
 Note: the redirect uri for your integration must match that of the example app you are running. For a local deployment that would be `http://localhost:3000/*`.
 
@@ -31,7 +33,7 @@ REACT_APP_SSO_REDIRECT_URI=http://localhost:3000
 REACT_APP_SSO_AUTH_SERVER_URL=https://dev.sandbox.loginproxy.gov.bc.ca/auth
 REACT_APP_SSO_REALM=standard
 REACT_APP_SSO_CLIENT_ID=<resource value from JSON>
-REACT_APP_PRES_REQ_CONF_ID=showcase-demo
+REACT_APP_PRES_REQ_CONF_ID=sso-pathfinder-1
 REACT_APP_SITEMINDER_LOGOUT=https://logon7.gov.bc.ca/clp-cgi/logoff.cgi
 ```
 
