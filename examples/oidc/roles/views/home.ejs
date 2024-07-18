@@ -14,7 +14,7 @@
             <% if(role.split(",").length == 2) { %>
               <%- include('./partials/tworoles'); %>
             <% } else { %>
-              <%- include(`./partials/${role}`); %>
+              <%- include(`./partials/onerole`); %>
             <% } %>
           <% } else { %>
             <%- include('./partials/norole'); %>
