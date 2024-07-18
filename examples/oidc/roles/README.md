@@ -38,3 +38,13 @@ Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.
+
+## Creating and assigning roles
+
+If you log into the example app without assigning roles to the user, no roles will be displayed.
+
+To assign and create roles for a user, select your integration in the CSS App, create the role in the **Role Management** tab, and add the users to the role in the **Assign Users to Roles** tab.
+
+The [server.js](./server.js) file uses the passport middleware to extract the user roles from the access token.  This is parsed by the [route.js](./routes.js) and the app is rendered with the routes assinged. 
+
+Conditionally rendering pages for a given role (admin, editor, viewonly) can be done in the [route.js](./routes.js) file.
