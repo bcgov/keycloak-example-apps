@@ -82,6 +82,7 @@ app.post('/login', (req, res) => {
     failureFlash: true,
     successRedirect: '/',
     failureRedirect: '/login',
+    failureMessage: true,
   })(req, res);
 });
 
@@ -90,7 +91,7 @@ app.post('/login/callback', (req: any, res, next) => {
     failureRedirect: '/login',
     successRedirect: '/',
     failureFlash: true,
-  })(req, res);
+  })(req, res, next);
 });
 
 app.get('/logout', (req: any, res, next) => {

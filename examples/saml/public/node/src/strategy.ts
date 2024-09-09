@@ -21,6 +21,7 @@ export class SamlStrategy {
         logoutUrl: samlStrategyConfig.logoutUrl,
         logoutCallbackUrl: `${process.env.APP_URI}/logout/callback`,
         signatureAlgorithm: 'sha256',
+        identifierFormat: 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent',
       },
       (profile: any, done: any) => {
         console.log('passport.use() profile: %s \n', JSON.stringify(profile));
