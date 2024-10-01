@@ -79,7 +79,7 @@ const Contents = ({ keycloak, activeItem, customValue }: Props) => {
             {Object.entries(value).map(([key, val]: any) => (
               <Table.Row key={key}>
                 <Table.Cell>{key}</Table.Cell>
-                <Table.Cell>{isPlainObject(val) ? JSON.stringify(val) : val}</Table.Cell>
+                <Table.Cell>{isPlainObject(val) ? JSON.stringify(val) : String(val)}</Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>
