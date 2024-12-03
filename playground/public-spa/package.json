@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "axios": "^0.27.2",
-    "keycloak-js": "^19.0.1",
+    "axios": "^1.7.8",
+    "keycloak-js": "^26.0.6",
     "lodash": "^4.17.21",
     "next": "13.4.10",
     "qs": "^6.11.0",
