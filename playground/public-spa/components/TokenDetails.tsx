@@ -1,4 +1,4 @@
-import type { KeycloakInstance, KeycloakConfig, KeycloakLoginOptions } from 'keycloak-js';
+import Keycloak from 'keycloak-js';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { Table, Menu, Segment, Button, Icon } from 'semantic-ui-react';
@@ -14,7 +14,7 @@ type ActiveItem =
   | 'refreshTokenParsed';
 
 interface Props {
-  keycloak: KeycloakInstance;
+  keycloak: Keycloak;
   activeItem: ActiveItem;
   customValue?: string;
   style: any;
@@ -58,7 +58,7 @@ const Contents = ({ keycloak, activeItem, customValue }: Props) => {
       </Segment>
     );
 
-  const value = (keycloak as KeycloakInstance & { payload?: string })[activeItem];
+  const value = (keycloak as Keycloak & { payload?: string })[activeItem];
 
   if (typeof value === 'string')
     return (
@@ -90,7 +90,7 @@ const Contents = ({ keycloak, activeItem, customValue }: Props) => {
 };
 
 interface TokenDetailsProps {
-  keycloak: KeycloakInstance;
+  keycloak: Keycloak;
 }
 
 export default function TokenDetails({ keycloak }: TokenDetailsProps) {

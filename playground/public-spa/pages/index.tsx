@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import type { KeycloakInstance, KeycloakConfig, KeycloakLoginOptions } from 'keycloak-js';
+import type { KeycloakConfig, KeycloakLoginOptions } from 'keycloak-js';
 import { Container, Button, Message } from 'semantic-ui-react';
 import TokenDetails from 'components/TokenDetails';
 import Configuration from 'components/Configuration';
@@ -16,13 +15,13 @@ interface Props {
 const Home = ({ keycloak, kcConfig, setKcConfig, loginOptions, setLginOptions }: Props) => {
   const handleLogin = () => {
     // @ts-ignore
-    if(loginOptions.pres_req_conf_id){
+    if (loginOptions.pres_req_conf_id) {
       var loginURL = keycloak?.createLoginUrl(loginOptions);
-      if(loginURL){
-         // @ts-ignore
+      if (loginURL) {
+        // @ts-ignore
         window.location.href = loginURL + '&pres_req_conf_id=' + loginOptions.pres_req_conf_id;
-      };
-    }else{
+      }
+    } else {
       keycloak?.login(loginOptions);
     }
   };
@@ -31,7 +30,7 @@ const Home = ({ keycloak, kcConfig, setKcConfig, loginOptions, setLginOptions }:
       `${kcConfig.url}/realms/${kcConfig.realm}/protocol/openid-connect/logout?post_logout_redirect_uri=` +
         loginOptions.redirectUri +
         '&id_token_hint=' +
-        keycloak.idToken, 
+        keycloak.idToken,
     )}`;
   };
   return (
