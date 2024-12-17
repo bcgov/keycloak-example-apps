@@ -1,13 +1,13 @@
 import Keycloak from 'keycloak-js';
 
 const _kc = new Keycloak({
-  url: process.env.REACT_APP_SSO_AUTH_SERVER_URL,
-  realm: process.env.REACT_APP_SSO_REALM,
-  clientId: process.env.REACT_APP_SSO_CLIENT_ID,
+  url: import.meta.env.VITE_SSO_AUTH_SERVER_URL,
+  realm: import.meta.env.VITE_SSO_REALM,
+  clientId: import.meta.env.VITE_SSO_CLIENT_ID,
 });
 
 const loginOptions = {
-  redirectUri: process.env.REACT_APP_SSO_REDIRECT_URI,
+  redirectUri: import.meta.env.VITE_SSO_REDIRECT_URI,
   idpHint: '',
 };
 
@@ -49,8 +49,8 @@ export const initializeKeycloak = async () => {
 // one of valid post logout redirect uris in the client configuration
 export const logout = () => {
   window.location.href = `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${encodeURIComponent(
-    `${process.env.REACT_APP_SSO_AUTH_SERVER_URL}/realms/${process.env.REACT_APP_SSO_REALM}/protocol/openid-connect/logout?post_logout_redirect_uri=` +
-      process.env.REACT_APP_SSO_REDIRECT_URI +
+    `${process.env.VITE_SSO_AUTH_SERVER_URL}/realms/${process.env.VITE_SSO_REALM}/protocol/openid-connect/logout?post_logout_redirect_uri=` +
+      process.env.VITE_SSO_REDIRECT_URI +
       '&id_token_hint=' +
       _kc.idToken,
   )}`;
