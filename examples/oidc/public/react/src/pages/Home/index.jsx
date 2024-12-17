@@ -37,7 +37,7 @@ function Home() {
 
                     <div>
                         <h2>Test Rest API</h2>
-                        <p>In order to test sending a token to a backing rest api, you need to also run one of the rest API examples</p>
+                        <p>In order to test sending a token to a backing rest api, you need to also be running one of the <a href="https://github.com/bcgov/keycloak-example-apps/tree/dev/examples/oidc/public/rest-api" target="_blank">rest API examples</a>.</p>
                         <button onClick={() => fetchRestictedContent(keycloak.token, setMessage)}>Fetch Restricted Content</button>
                     </div>
 
