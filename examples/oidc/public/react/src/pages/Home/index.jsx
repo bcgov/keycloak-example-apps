@@ -4,15 +4,17 @@ import { logout } from '../../services/keycloak';
 import moment from 'moment';
 
 const fetchRestictedContent = (token, setMessage) => {
+    // Defaulting to 8080 for demo purposes
+    const serverURI = import.meta.env.VITE_SERVER_URI ?? 'http://localhost:8080' 
     setMessage('Request in flight...')
-    fetch(`${import.meta.env.VITE_SERVER_URI}/restricted`, {
+    fetch(`${serverURI}/restricted`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
     })
         .then(res => res.text())
         .then(message => setMessage(message))
-        .catch(() => setMessage('Fetch failed. Ensure the rest API is running on the expected host and port.'))
+        .catch(() => setMessage(`Fetch failed. Ensure the rest API is running on ${serverURI}.`))
 }
 
 function Home() {
