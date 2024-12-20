@@ -8,7 +8,7 @@ We recommend you read this section of our [technical docs also](https://bcgov.gi
    
    b) [Vue](https://github.com/bcgov/keycloak-example-apps/tree/dev/examples/oidc/public/vue)
 
-2. [Validate token signatures in an API](https://github.com/bcgov/keycloak-example-apps/tree/dev/examples/oidc/public/rest-api). This pattern is not restricted to public tokens but often requested for SPA's using a public client.
+2. [Validate token signatures in an API](https://github.com/bcgov/keycloak-example-apps/tree/dev/examples/oidc/public/rest-api). This pattern is not restricted to tokens from public clients but often requested for SPA's using a public client.
 
    a) [Go](https://github.com/bcgov/keycloak-example-apps/tree/dev/examples/oidc/public/rest-api/golang)
 
