@@ -12,7 +12,9 @@ const formatDate = (unixTime) => {
 
 const fetchRestictedContent = () => {
   message.value = 'Request in flight...'
-  fetch(`${import.meta.env.VITE_SERVER_URI}/restricted`, {
+  // Defaulting to 8080 for demo purposes
+  const serverURI = import.meta.env.VITE_SERVER_URI ?? 'http://localhost:8080' 
+  fetch(`${serverURI}/restricted`, {
     headers: {
       Authorization: `Bearer ${keycloak.token}`,
     },
@@ -22,7 +24,7 @@ const fetchRestictedContent = () => {
     .catch(
       () =>
         (message.value =
-          'Fetch failed. Ensure the rest API is running on the expected host and port.')
+          `Fetch failed. Ensure the rest API is running on ${serverURI}.`)
     )
 }
 </script>

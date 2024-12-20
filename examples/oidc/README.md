@@ -7,6 +7,12 @@ We recommend you read this section of our [technical docs also](https://bcgov.gi
    a) [React](https://github.com/bcgov/keycloak-example-apps/tree/dev/examples/oidc/public/react)
    
    b) [Vue](https://github.com/bcgov/keycloak-example-apps/tree/dev/examples/oidc/public/vue)
+
+2. [Validate token signatures in an API](https://github.com/bcgov/keycloak-example-apps/tree/dev/examples/oidc/public/rest-api). This pattern is not restricted to tokens from public clients but often requested for SPA's using a public client.
+
+   a) [Go](https://github.com/bcgov/keycloak-example-apps/tree/dev/examples/oidc/public/rest-api/golang)
+
+   b) [Nodejs](https://github.com/bcgov/keycloak-example-apps/tree/dev/examples/oidc/public/rest-api/nodejs)
    
 3. [Confidential Client Type](https://bcgov.github.io/sso-docs/integrating-your-application/client-types)
    

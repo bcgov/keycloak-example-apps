@@ -10,7 +10,7 @@ This is an example react app that authenticates users using OpenID-Connect stand
 
 - You require an integration before you can start using this example app.
 - Navigate to [SSO Onboarding Guide](https://github.com/bcgov/sso-keycloak/wiki/SSO-Onboarding) to learn more about creating an integration.
-- When creating the integration request add `http://localhost:3000/*` to the list of valid redirect URIs for your integration.
+- When creating the integration request add `http://localhost:5173/*` to the list of valid redirect URIs for your integration if using the default port. Update the port as appropriate if using a different one locally.
 - Once you've successfully set up an integration via the CSS app, select your integration in the dashboard and access the `Technical Details` tab. From there, simply choose the desired environment (Development, Test, or Production) and click the corresponding button to download a JSON file containing your integration details.
 
 ## Installing
@@ -18,10 +18,10 @@ This is an example react app that authenticates users using OpenID-Connect stand
 - Copy and update the below values to a `.env` file in the project directory and save it.
 
   ```sh
-  REACT_APP_SSO_REDIRECT_URI=http://localhost:3000
-  REACT_APP_SSO_AUTH_SERVER_URL=https://dev.loginproxy.gov.bc.ca/auth
-  REACT_APP_SSO_REALM=standard
-  REACT_APP_SSO_CLIENT_ID=<resource value from JSON>
+  VITE_SSO_REDIRECT_URI=http://localhost:5173
+  VITE_SSO_AUTH_SERVER_URL=https://dev.loginproxy.gov.bc.ca/auth
+  VITE_SSO_REALM=standard
+  VITE_SSO_CLIENT_ID=<resource value from JSON>
   ```
 
 In the project directory, you can run either `yarn` or `npm` commands:
@@ -30,7 +30,7 @@ In the project directory, you can run either `yarn` or `npm` commands:
 
 Installs dependencies from `package.json`
 
-### `yarn start` or `npm run start`
+### `yarn dev` or `npm run dev`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.

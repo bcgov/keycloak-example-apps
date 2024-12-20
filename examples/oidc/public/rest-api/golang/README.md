@@ -4,10 +4,10 @@ This is an example for authenticating tokens received from a public SPA in a gol
 
 ## Getting Started
 
-- Copy `.env.example` to a new file `.env`, and update values as needed. The provided realm URI example is for a standard client in the dev environment. Replace the `AUDIENCE` variable with your client id.
+- Copy `.env.example` to a new file `.env`, and update values as needed. The provided realm URI example is valid for any standard client in the dev environment. Replace the `AUDIENCE` variable with your client id.
 - Run `go run .` to run the server.
 
-This server can be used in combination with the [React](../../react) or [Vue](../../vue) examples to test tokens from client-side applications. Run the SPA application example in another terminal to test them together.
+This server can be used in combination with the [React](../../react) or [Vue](../../vue) examples to test tokens from client-side applications. Run the SPA application example in another terminal to test them together. Ensure to set the AUDIENCE to the same client ID as the public app, since API is verifying the token was issued by your client (you will get a 401 otherwise). If you would like to allow multiple clients you can pass multiple clients in the `Audiences` array to the [verify function](./verify.go#L39).
 
 ### Hot reloading
 
