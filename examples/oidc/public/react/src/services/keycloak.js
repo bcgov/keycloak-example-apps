@@ -49,8 +49,8 @@ export const initializeKeycloak = async () => {
 // one of valid post logout redirect uris in the client configuration
 export const logout = () => {
   window.location.href = `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${encodeURIComponent(
-    `${process.env.VITE_SSO_AUTH_SERVER_URL}/realms/${process.env.VITE_SSO_REALM}/protocol/openid-connect/logout?post_logout_redirect_uri=` +
-      process.env.VITE_SSO_REDIRECT_URI +
+    `${import.meta.env.VITE_SSO_AUTH_SERVER_URL}/realms/${import.meta.env.VITE_SSO_REALM}/protocol/openid-connect/logout?post_logout_redirect_uri=` +
+      import.meta.env.VITE_SSO_REDIRECT_URI +
       '&id_token_hint=' +
       _kc.idToken,
   )}`;
