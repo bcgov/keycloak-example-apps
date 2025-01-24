@@ -24,6 +24,11 @@ This is an example react app that authenticates users using OpenID-Connect stand
   VITE_SSO_CLIENT_ID=<resource value from JSON>
   ```
 
+- If you want to run this alongside one of the rest API examples, also include an env var for the API (API examples run on 8080 by default):
+  ```sh
+  VITE_SERVER_URI=http://localhost:8080
+  ```
+
 In the project directory, you can run either `yarn` or `npm` commands:
 
 ### `yarn install` or `npm install`
@@ -33,6 +38,6 @@ Installs dependencies from `package.json`
 ### `yarn dev` or `npm run dev`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
 
 The page will reload when you make changes.
