@@ -13,10 +13,10 @@ interface Props {
 }
 
 const Home = ({ keycloak, kcConfig, setKcConfig, loginOptions, setLginOptions }: Props) => {
-  const handleLogin = () => {
+  const handleLogin = async () => {
     // @ts-ignore
     if (loginOptions.pres_req_conf_id) {
-      var loginURL = keycloak?.createLoginUrl(loginOptions);
+      var loginURL = await keycloak?.createLoginUrl(loginOptions);
       if (loginURL) {
         // @ts-ignore
         window.location.href = loginURL + '&pres_req_conf_id=' + loginOptions.pres_req_conf_id;
