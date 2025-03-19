@@ -39,7 +39,7 @@ export const initializeKeycloak = async () => {
       return _kc;
     } else {
       if(loginOptions.pres_req_conf_id){
-        var loginURL = _kc?.createLoginUrl(loginOptions);
+        var loginURL = await _kc?.createLoginUrl(loginOptions);
         if(loginURL){
           /* The keycloak-js library will not pass in the `pres_req_conf_id` needed for DC login
           meaning the login url must have it appended.  */
