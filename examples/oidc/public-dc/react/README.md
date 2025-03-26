@@ -34,7 +34,6 @@ REACT_APP_SSO_AUTH_SERVER_URL=https://dev.sandbox.loginproxy.gov.bc.ca/auth
 REACT_APP_SSO_REALM=standard
 REACT_APP_SSO_CLIENT_ID=<resource value from JSON>
 REACT_APP_PRES_REQ_CONF_ID=sso-pathfinder-1
-REACT_APP_SITEMINDER_LOGOUT=https://logon7.gov.bc.ca/clp-cgi/logoff.cgi
 ```
 
 In the project directory, you can run either `yarn` or `npm` commands:
