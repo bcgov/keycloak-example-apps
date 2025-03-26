@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import { AuthenticationContext } from '../../App';
-import { logout } from '../../services/keycloak';
 import * as moment from 'moment';
 
 function Home() {
@@ -17,7 +16,7 @@ function Home() {
           <p>{`Id token expires at ` + formatDate(keycloak.idTokenParsed.exp)}</p>
           <p>{`Access token expires at ` + formatDate(keycloak.tokenParsed.exp)}</p>
           <p>{`Refresh token expires at ` + formatDate(keycloak.refreshTokenParsed.exp)}</p>
-          <button onClick={() => logout()}>logout</button>
+          <button onClick={() => keycloak.logout()}>logout</button>
         </>
       )}
     </>
