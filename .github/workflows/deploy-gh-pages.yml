@@ -16,7 +16,7 @@ env:
   APP_ENV: 'prod'
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
