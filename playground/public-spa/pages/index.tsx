@@ -26,12 +26,20 @@ const Home = ({ keycloak, kcConfig, setKcConfig, loginOptions, setLginOptions }:
     }
   };
   const handleLogout = () => {
-    window.location.href = `https://logon7.gov.bc.ca/clp-cgi/logoff.cgi?retnow=1&returl=${encodeURIComponent(
-      `${kcConfig.url}/realms/${kcConfig.realm}/protocol/openid-connect/logout?post_logout_redirect_uri=` +
+    const userIdp = keycloak?.tokenParsed?.preferred_username.split('@')[1];
+    if (userIdp && ['idir', 'bceidbasic', 'bceidbusiness', 'bceidboth'].some((idp) => userIdp === idp)) {
+      const kcPostLogoutRedirectUri =
         loginOptions.redirectUri +
-        '&id_token_hint=' +
-        keycloak.idToken,
-    )}`;
+        `${keycloak.idToken ? '&id_token_hint=' + keycloak.idToken : `&client_id=${kcConfig.clientId}`}`;
+      const url = new URL('https://logon7.gov.bc.ca/clp-cgi/logoff.cgi');
+      url.searchParams.append('retnow', '1');
+      url.searchParams.append(
+        'returl',
+        `${kcConfig.url}/realms/${kcConfig.realm}/protocol/openid-connect/logout?post_logout_redirect_uri=${kcPostLogoutRedirectUri}`,
+      );
+
+      window.location.href = url.href;
+    } else keycloak?.logout();
   };
   return (
     <Container>
