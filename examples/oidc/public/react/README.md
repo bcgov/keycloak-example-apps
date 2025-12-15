@@ -9,7 +9,7 @@ This is an example react app that authenticates users using OpenID-Connect stand
 ## Pre-requisites
 
 - You require an integration before you can start using this example app.
-- Navigate to [SSO Onboarding Guide](https://github.com/bcgov/sso-keycloak/wiki/SSO-Onboarding) to learn more about creating an integration.
+- Navigate to [SSO Onboarding Guide](https://mvp.developer.gov.bc.ca/docs/default/component/css-docs/SSO-Onboarding/) to learn more about creating an integration.
 - When creating the integration request add `http://localhost:5173/*` to the list of valid redirect URIs for your integration if using the default port. Update the port as appropriate if using a different one locally.
 - Once you've successfully set up an integration via the CSS app, select your integration in the dashboard and access the `Technical Details` tab. From there, simply choose the desired environment (Development, Test, or Production) and click the corresponding button to download a JSON file containing your integration details.
 

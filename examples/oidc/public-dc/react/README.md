@@ -2,7 +2,7 @@
 
 ## Description
 
-This is an example react app that authenticates users using OAuth 2.0 standard flow with PKCE, with DC integration. It is identical to the none-DC integration with one exception, the login redirect url has one aditional environment variable passed in. See the `keycloak-example-apps/examples/oidc/public-dc/react/src/services/keycloak.js` file.
+This is an example react app that authenticates users using OAuth 2.0 standard flow with PKCE, with DC integration. It is identical to the none-DC integration with one exception, the login redirect url has one aditional environment variable passed in. See the `https://github.com/bcgov/keycloak-example-apps/blob/main/examples/oidc/public-dc/react/src/services/keycloak.js#L12` file.
 
 ## Getting Started
 
@@ -13,12 +13,11 @@ Currently, Digital Credential (DC) is available in our standard service offering
 This example specifically uses the showcase demo, Digital Credential. Creating a different one will require reaching out to the DC team.
 
 - You require an integration before you can start using this example app
-- Navigate to [SSO Onboarding Guide](https://github.com/bcgov/sso-keycloak/wiki/SSO-Onboarding) to know more about creating an integration
+- Navigate to [SSO Onboarding Guide](https://mvp.developer.gov.bc.ca/docs/default/component/css-docs/SSO-Onboarding/) to know more about creating an integration
 - Create an integration with DC as one of the selected IDPs
 - When creating the integration request add `http://localhost:3000/*` to the list of valid redirect URIs for your integration.
 - Install the BC Wallet on your mobile device [Demo Instructions](https://digital.gov.bc.ca/digital-trust/showcase/demo)
 - This example should only be used in Dev/Test when testing:
-   - At the time of writing this update, please use the `sso-pathfinder-1` credential for dev/test. Please reach out to us and we'll do our best to set you up in the interim ie get your working credential in your wallet
    - By September 2024 we anticipate you can use the the `showcase-person` credential where you add the `Joyce person credential` to your BC Wallet. Please read [here](https://digital.gov.bc.ca/digital-trust/showcase/demo)
 - **stay tuned as the DC team provides a link to additional material**
 
