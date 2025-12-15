@@ -22,16 +22,16 @@ We have one example app written using `nodejs` and `express`, which is placed un
 
 ### See the [OIDC README](./examples/oidc/README.md)
 
-### Playground
+## Playground
 
-## SAML Playground
+### SAML Playground
 The `./playground/public/node` folder contains the SAML Playground, a Node-Express app for testing and troubleshooting SAML integrations with Keycloak.
 
 - This is for development and testing only
 - It helps validate SAML configuration before production
 - See the SAML Playground README for setup details
 
-## OIDC Playground
+### OIDC Playground
 
 The `./playground/public-spa` folder contains the OIDC Playground, a Node-Express app for testing and troubleshooting OIDC integrations with Keycloak.
 
