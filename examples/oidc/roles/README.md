@@ -9,7 +9,7 @@ This is an example backend app that authenticates users using OpenID-Connect sta
 ## Pre-requisites
 
 - You require an integration with client-type `confidential` before you can start using this example app
-- Navigate to [SSO Onboarding Guide](https://github.com/bcgov/sso-keycloak/wiki/SSO-Onboarding) to learn more about creating an integration
+- Navigate to [SSO Onboarding Guide](https://mvp.developer.gov.bc.ca/docs/default/component/css-docs/SSO-Onboarding/) to learn more about creating an integration
 - When creating the integration request add `http://localhost:3000/*` to the list of valid redirect URIs for your integration.
 - Once you've successfully set up an integration via the CSS app, select your integration in the dashboard and access the `Technical Details` tab. From there, simply choose the desired environment (Development, Test, or Production) and click the corresponding button to download a JSON file containing your integration details.
 
@@ -39,12 +39,20 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.
 
-## Creating and assigning roles
 
-If you log into the example app without assigning roles to the user, no roles will be displayed.
+## Creating and Assigning Roles
 
-To assign and create roles for a user, select your integration in the CSS App, create the role in the **Role Management** tab, and add the users to the role in the **Assign Users to Roles** tab.
+If you log into the example app without role(s) assigned to the user, no roles will be displayed.
 
-The [server.js](./server.js) file uses the passport middleware to extract the user roles from the access token.  This is parsed by the [route.js](./routes.js) and the app is rendered with the routes assinged. 
+To create and assign roles for a user:
+1. Select your integration in the **CSS App**.
+2. Create the role in the **Role Management** tab.
+3. Add users to the role in the **Assign Users to Roles** tab.
 
-Conditionally rendering pages for a given role (admin, editor, viewonly) can be done in the [route.js](./routes.js) file.
+> **Note:** Roles do not have to be `admin`, `editor`, or `viewonly` as previously described. You can define custom roles as needed.  
+> If composite roles are involved, the app will display **effective roles**.
+
+The server.js file uses the Passport middleware to extract user roles from the access token. This is parsed by [routes.js](./ the app is rendered with the assigned routes.
+
+Conditionally rendering pages for a given role (e.g., `admin`, `editor`, `viewonly`) can be done in routes.js.
+``

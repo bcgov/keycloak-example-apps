@@ -8,9 +8,24 @@ To use the examples in the app, you will need to have a keycloak client setup to
 If you are using keycloak to integrate with a new application you will be building, you can
 use our our self-service [webapp](https://bcgov.github.io/sso-requests/) to create a new client.
 
+
+
+
 ## Examples
 
-The `./examples` folder contains example apps that make use of public and confidential clients. As of now only OpenID connect clients are supported and all the example apps are written in javascript
+The `./examples` folder contains example apps for OpenID Connect (OIDC) integrations:
+
+- Public clients: React and Vue single-page apps
+- Confidntial client: Node.js + Express backend
+    - See the [OIDC README] (./examples/oidc/README.md)
+
+## SAML Playground
+
+The `./playground` folder contains the SAML Playground, a Node-Express app for testing and troubleshooting SAML integrations with Keycloak.
+
+- This is for development and testing only
+- It helps validate SAML configuration before production
+- See the SAML Playground README for setup details
 
 ### Public
 
