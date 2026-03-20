@@ -38,7 +38,8 @@ jobs:
       - name: Build and Push SSO Keycloak Example Apps Docker image
         uses: docker/build-push-action@v7
         with:
-          context: .
+          context: playground/public-spa
+          file: playground/public-spa/Dockerfile
           push: true
           tags: ${{ env.GITHUB_REGISTRY }}/bcgov/sso-keycloak-example-apps:latest
           cache-from: type=local,src=/tmp/.buildx-cache-sso-keycloak-example-apps
