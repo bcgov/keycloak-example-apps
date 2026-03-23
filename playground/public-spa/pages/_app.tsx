@@ -1,5 +1,5 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/globals.css';
-import 'semantic-ui-css/semantic.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
@@ -7,12 +7,13 @@ import type { AppProps } from 'next/app';
 import Keycloak from 'keycloak-js';
 import type { KeycloakConfig, KeycloakInitOptions, KeycloakLoginOptions } from 'keycloak-js';
 import store from 'store2';
-import getConfig from 'next/config';
 
-const { publicRuntimeConfig = {} } = getConfig() || {};
-const { sso_redirect_uri, app_env } = publicRuntimeConfig;
-
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({
+  Component,
+  pageProps,
+  envVars,
+}: AppProps & { envVars: { sso_redirect_uri: string; app_env: string } }) {
+  const { sso_redirect_uri, app_env } = envVars;
   const [keycloak, setKeycloak] = useState<Keycloak>();
   const [loading, setLoading] = useState(false);
 
@@ -96,5 +97,14 @@ function MyApp({ Component, pageProps }: AppProps) {
     </>
   );
 }
+
+MyApp.getInitialProps = async () => {
+  return {
+    envVars: {
+      sso_redirect_uri: process.env.SSO_REDIRECT_URI || 'http://localhost:3000',
+      app_env: process.env.APP_ENV || 'local',
+    },
+  };
+};
 
 export default MyApp;

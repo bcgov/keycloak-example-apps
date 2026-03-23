@@ -1,8 +1,9 @@
 import Keycloak from 'keycloak-js';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { Table, Menu, Segment, Button, Icon } from 'semantic-ui-react';
-import { isPlainObject } from 'lodash';
+import { isPlainObject, over } from 'lodash';
+import { Button, Tab, Table, Tabs } from 'react-bootstrap';
+import { MdOutlineCopyright } from 'react-icons/md';
 
 type ActiveItem =
   | 'payload'
@@ -17,7 +18,7 @@ interface Props {
   keycloak: Keycloak;
   activeItem: ActiveItem;
   customValue?: string;
-  style: any;
+  style?: any;
 }
 
 const Copy = styled.div`
@@ -45,44 +46,44 @@ const copyTextToClipboard = (text: string) => {
   }
 };
 
-const Contents = ({ keycloak, activeItem, customValue }: Props) => {
+const CopyButton = ({ text }: { text: string }) => {
+  return (
+    <Button variant="secondary" onClick={() => copyTextToClipboard(text)} style={{ marginBottom: '1em' }}>
+      Copy
+    </Button>
+  );
+};
+
+const Contents = ({ keycloak, activeItem, customValue, style }: Props) => {
   if (customValue)
     return (
-      <Segment className="overflow-wrap">
-        <Copy onClick={() => copyTextToClipboard(customValue)}>
-          <Button icon>
-            <Icon name="copy outline" />
-          </Button>
-        </Copy>
-        {customValue}
-      </Segment>
+      <>
+        <CopyButton text={customValue} />
+        <div style={style}>{customValue}</div>
+      </>
     );
 
   const value = (keycloak as Keycloak & { payload?: string })[activeItem];
 
   if (typeof value === 'string')
     return (
-      <Segment className="overflow-wrap">
-        <Copy onClick={() => copyTextToClipboard(value)}>
-          <Button icon>
-            <Icon name="copy outline" />
-          </Button>
-        </Copy>
-        {value}
-      </Segment>
+      <>
+        <CopyButton text={value} />
+        <div style={style}>{value}</div>
+      </>
     );
   if (typeof value === 'object')
     return (
       <>
-        <Table celled>
-          <Table.Body>
+        <Table striped bordered hover>
+          <tbody>
             {Object.entries(value).map(([key, val]: any) => (
-              <Table.Row key={key}>
-                <Table.Cell>{key}</Table.Cell>
-                <Table.Cell>{isPlainObject(val) ? JSON.stringify(val) : String(val)}</Table.Cell>
-              </Table.Row>
+              <tr key={key}>
+                <td>{key}</td>
+                <td>{isPlainObject(val) ? JSON.stringify(val) : String(val)}</td>
+              </tr>
             ))}
-          </Table.Body>
+          </tbody>
         </Table>
       </>
     );
@@ -93,9 +94,13 @@ interface TokenDetailsProps {
   keycloak: Keycloak;
 }
 
+const TabContent = styled.div`
+  overflow-wrap: break-word;
+  max-width: 100%;
+`;
+
 export default function TokenDetails({ keycloak }: TokenDetailsProps) {
   const [activeItem, setActiveItem] = useState<ActiveItem>('payload');
-  const handleItemClick = (event: any, { name }: any) => setActiveItem(name);
 
   let customValue = '';
   if (activeItem === 'payload') {
@@ -112,33 +117,64 @@ export default function TokenDetails({ keycloak }: TokenDetailsProps) {
     <>
       {keycloak?.authenticated && (
         <>
-          <Menu attached="top" tabular>
-            <Menu.Item name="payload" active={activeItem === 'payload'} onClick={handleItemClick}>
-              Payload
-            </Menu.Item>
-            <Menu.Item name="token" active={activeItem === 'token'} onClick={handleItemClick}>
-              Token Raw{' '}
-            </Menu.Item>
-            <Menu.Item name="tokenParsed" active={activeItem === 'tokenParsed'} onClick={handleItemClick} />
-            <Menu.Item name="idToken" active={activeItem === 'idToken'} onClick={handleItemClick}>
-              ID Token Raw{' '}
-            </Menu.Item>
-            <Menu.Item name="idTokenParsed" active={activeItem === 'idTokenParsed'} onClick={handleItemClick} />
-            <Menu.Item name="refreshToken" active={activeItem === 'refreshToken'} onClick={handleItemClick}>
-              Refresh Token Raw{' '}
-            </Menu.Item>
-            <Menu.Item
-              name="refreshTokenParsed"
-              active={activeItem === 'refreshTokenParsed'}
-              onClick={handleItemClick}
-            />
-          </Menu>
-          <Contents
-            keycloak={keycloak}
-            activeItem={activeItem}
-            customValue={customValue}
-            style={{ maxWidth: '100%' }}
-          />
+          <Tabs activeKey={activeItem} onSelect={(k) => setActiveItem(k as ActiveItem)} className="mb-3">
+            <Tab eventKey="payload" title="Payload">
+              <Contents
+                keycloak={keycloak}
+                activeItem={activeItem}
+                customValue={customValue}
+                style={{ overflowWrap: 'break-word', maxWidth: '100%' }}
+              />
+            </Tab>
+            <Tab eventKey="token" title="Token">
+              <Contents
+                keycloak={keycloak}
+                activeItem={activeItem}
+                customValue={customValue}
+                style={{ overflowWrap: 'break-word', maxWidth: '100%' }}
+              />
+            </Tab>
+            <Tab eventKey="tokenParsed" title="Token Parsed">
+              <Contents
+                keycloak={keycloak}
+                activeItem={activeItem}
+                customValue={customValue}
+                style={{ overflowWrap: 'break-word', maxWidth: '100%' }}
+              />
+            </Tab>
+            <Tab eventKey="idToken" title="ID Token">
+              <Contents
+                keycloak={keycloak}
+                activeItem={activeItem}
+                customValue={customValue}
+                style={{ overflowWrap: 'break-word', maxWidth: '100%' }}
+              />
+            </Tab>
+            <Tab eventKey="idTokenParsed" title="ID Token Parsed">
+              <Contents
+                keycloak={keycloak}
+                activeItem={activeItem}
+                customValue={customValue}
+                style={{ overflowWrap: 'break-word', maxWidth: '100%' }}
+              />
+            </Tab>
+            <Tab eventKey="refreshToken" title="Refresh Token">
+              <Contents
+                keycloak={keycloak}
+                activeItem={activeItem}
+                customValue={customValue}
+                style={{ overflowWrap: 'break-word', maxWidth: '100%' }}
+              />
+            </Tab>
+            <Tab eventKey="refreshTokenParsed" title="Refresh Token Parsed">
+              <Contents
+                keycloak={keycloak}
+                activeItem={activeItem}
+                customValue={customValue}
+                style={{ overflowWrap: 'break-word', maxWidth: '100%' }}
+              />
+            </Tab>
+          </Tabs>
         </>
       )}
     </>

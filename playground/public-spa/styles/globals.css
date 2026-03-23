@@ -18,3 +18,16 @@ a {
 .overflow-wrap {
   word-wrap: break-word;
 }
+
+.accordion {
+	--bs-accordion-active-bg: var(--bs-secondary-bg);
+  --bs-accordion-active-color: var(--bs-secondary-text);
+}
+
+.btn-secondary {
+  width: 100px;
+}
+
+.nav-link {
+  color: var(--bs-secondary-text);
+}

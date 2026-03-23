@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, Button, Accordion, Icon } from 'semantic-ui-react';
+import { Form, Button, Accordion } from 'react-bootstrap';
 import store from 'store2';
 
 export default function Configuration({ kcConfig, setKcConfig, loginOptions, setLginOptions }: any) {
@@ -12,7 +12,8 @@ export default function Configuration({ kcConfig, setKcConfig, loginOptions, set
     else setActiveIndex(index);
   };
 
-  const handleKcConfigChange = (event: any, { name, value }: any) => {
+  const handleKcConfigChange = (event: any) => {
+    const { name, value } = event.target;
     setKcConfigData({ ...kcConfigData, [name]: value });
   };
 
@@ -21,7 +22,8 @@ export default function Configuration({ kcConfig, setKcConfig, loginOptions, set
     setKcConfig(kcConfigData);
   };
 
-  const handleLoginOptionsChange = (event: any, { name, value }: any) => {
+  const handleLoginOptionsChange = (event: any) => {
+    const { name, value } = event.target;
     setLoginOptionsData({ ...loginOptionsData, [name]: value });
   };
 
@@ -31,107 +33,93 @@ export default function Configuration({ kcConfig, setKcConfig, loginOptions, set
   };
 
   return (
-    <Accordion styled>
-      <Accordion.Title active={activeIndex === 0} index={0} onClick={handleClick}>
-        <Icon name="dropdown" />
-        Keycloak OIDC Config
-      </Accordion.Title>
-      <Accordion.Content active={activeIndex === 0}>
-        <Form onSubmit={handleKcConfigSubmit}>
-          <Form.Field>
-            <label>Auth Server Url</label>
-            <Form.Input
-              placeholder="e.g https://dev.loginproxy.gov.bc.ca/auth"
-              required
-              type="url"
-              onChange={handleKcConfigChange}
-              name="url"
-              defaultValue={kcConfigData?.url}
-            />
-          </Form.Field>
-          <Form.Field>
-            <label>Realm</label>
-            <Form.Input
-              placeholder="Realm"
-              required
-              onChange={handleKcConfigChange}
-              name="realm"
-              defaultValue={kcConfigData?.realm}
-            />
-          </Form.Field>
-          <Form.Field>
-            <label>Client Id</label>
-            <Form.Input
-              placeholder="Client ID (resource)"
-              required
-              onChange={handleKcConfigChange}
-              name="clientId"
-              defaultValue={kcConfigData?.clientId}
-            />
-          </Form.Field>
-          <Button type="submit">Update</Button>
-        </Form>
-      </Accordion.Content>
-      <Accordion.Title active={activeIndex === 1} index={1} onClick={handleClick}>
-        <Icon name="dropdown" />
-        Keycloak Login Options
-      </Accordion.Title>
-      <Accordion.Content active={activeIndex === 1}>
-        <Form onSubmit={handleAuthConfigSubmit}>
-          <Form.Field>
-            <label>IDP Hint</label>
-            <Form.Input
-              placeholder="e.g idir"
-              onChange={handleLoginOptionsChange}
-              name="idpHint"
-              defaultValue={loginOptionsData?.idpHint}
-            />
-          </Form.Field>
-          <Form.Field>
-            <label>Redirect URI</label>
-            <Form.Input
-              placeholder="http://localhost:3000/"
-              required
-              type="url"
-              onChange={handleLoginOptionsChange}
-              name="redirectUri"
-              defaultValue={loginOptionsData?.redirectUri}
-            />
-          </Form.Field>
-          <Form.Field>
-            <label>Scope</label>
-            <Form.Input
-              placeholder="openid"
-              required
-              type="text"
-              onChange={handleLoginOptionsChange}
-              name="scope"
-              defaultValue={loginOptionsData?.scope}
-            />
-          </Form.Field>
-          <Form.Field>
-            <label>Digital Credential Configuration ID</label>
-            <Form.Input
-              placeholder=""
-              type="text"
-              onChange={handleLoginOptionsChange}
-              name="pres_req_conf_id"
-              defaultValue={loginOptionsData?.pres_req_conf_id}
-            />
-          </Form.Field>
-          {/* <Form.Field>
-            <label>PKCE Method</label>
-            <Form.Input
+    <Accordion defaultActiveKey="0">
+      <Accordion.Item eventKey="0">
+        <Accordion.Header>Keycloak OIDC Config</Accordion.Header>
+        <Accordion.Body>
+          <Form onSubmit={handleKcConfigSubmit}>
+            <Form.Group onChange={handleKcConfigChange}>
+              <Form.Label>Auth Server Url</Form.Label>
+              <Form.Control
+                placeholder="e.g https://dev.loginproxy.gov.bc.ca/auth"
+                required
+                type="url"
+                name="url"
+                defaultValue={kcConfigData?.url}
+              />
+            </Form.Group>
+            <Form.Group onChange={handleKcConfigChange}>
+              <Form.Label>Realm</Form.Label>
+              <Form.Control placeholder="Realm" required name="realm" defaultValue={kcConfigData?.realm} />
+            </Form.Group>
+            <Form.Group onChange={handleKcConfigChange}>
+              <Form.Label>Client Id</Form.Label>
+              <Form.Control
+                placeholder="Client ID (resource)"
+                required
+                name="clientId"
+                defaultValue={kcConfigData?.clientId}
+              />
+            </Form.Group>
+            <Button type="submit" style={{ marginTop: '1em' }} variant="secondary">
+              Update
+            </Button>
+          </Form>
+        </Accordion.Body>
+      </Accordion.Item>
+      <Accordion.Item eventKey="1">
+        <Accordion.Header>Keycloak Login Options</Accordion.Header>
+        <Accordion.Body>
+          <Form onSubmit={handleAuthConfigSubmit}>
+            <Form.Group onChange={handleLoginOptionsChange}>
+              <Form.Label>IDP Hint</Form.Label>
+              <Form.Control placeholder="e.g idir" name="idpHint" defaultValue={loginOptionsData?.idpHint} />
+            </Form.Group>
+            <Form.Group onChange={handleLoginOptionsChange}>
+              <Form.Label>Redirect URI</Form.Label>
+              <Form.Control
+                placeholder="http://localhost:3000/"
+                required
+                type="url"
+                name="redirectUri"
+                defaultValue={loginOptionsData?.redirectUri}
+              />
+            </Form.Group>
+            <Form.Group onChange={handleLoginOptionsChange}>
+              <Form.Label>Scope</Form.Label>
+              <Form.Control
+                placeholder="openid"
+                required
+                type="text"
+                name="scope"
+                defaultValue={loginOptionsData?.scope}
+              />
+            </Form.Group>
+            <Form.Group onChange={handleLoginOptionsChange}>
+              <Form.Label>Digital Credential Configuration ID</Form.Label>
+              <Form.Control
+                placeholder=""
+                type="text"
+                name="pres_req_conf_id"
+                defaultValue={loginOptionsData?.pres_req_conf_id}
+              />
+            </Form.Group>
+            {/* <Form.Group>
+            <Form.Label>PKCE Method</Form.Label>
+            <Form.Control
               placeholder="e.g idir"
               required
               onChange={handleLoginOptionsChange}
               name="PKCEMethod"
               defaultValue={loginOptionsData?.pkceMethod}
             />
-          </Form.Field> */}
-          <Button type="submit">Update</Button>
-        </Form>
-      </Accordion.Content>
+          </Form.Group> */}
+            <Button type="submit" style={{ marginTop: '1em' }} variant="secondary">
+              Update
+            </Button>
+          </Form>
+        </Accordion.Body>
+      </Accordion.Item>
     </Accordion>
   );
 }
