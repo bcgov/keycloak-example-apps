@@ -62,10 +62,13 @@ jobs:
           mv /tmp/.buildx-cache-keycloak-example-apps-new /tmp/.buildx-cache-keycloak-example-apps
 
       - name: Install and Build
+        env:
+          STATIC_SITE: 'true'
+          SSO_REDIRECT_URI: ${{ env.SSO_REDIRECT_URI }}
+          APP_ENV: ${{ env.APP_ENV }}
         run: |
           yarn
           yarn build
-          yarn export
           touch ./out/.nojekyll
         working-directory: ./playground/public-spa
 
