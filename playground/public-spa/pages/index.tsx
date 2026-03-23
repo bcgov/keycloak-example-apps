@@ -1,4 +1,4 @@
-import type { KeycloakConfig, KeycloakLoginOptions } from 'keycloak-js';
+import type { KeycloakConfig, KeycloakLoginOptions, KeycloakServerConfig } from 'keycloak-js';
 import TokenDetails from 'components/TokenDetails';
 import Configuration from 'components/Configuration';
 import Keycloak from 'keycloak-js';
@@ -35,7 +35,7 @@ const Home = ({ keycloak, kcConfig, setKcConfig, loginOptions, setLginOptions }:
       url.searchParams.append('retnow', '1');
       url.searchParams.append(
         'returl',
-        `${kcConfig?.url}/realms/${kcConfig?.realm}/protocol/openid-connect/logout?post_logout_redirect_uri=${kcPostLogoutRedirectUri}`,
+        `${(kcConfig as KeycloakServerConfig)?.url}/realms/${(kcConfig as KeycloakServerConfig)?.realm}/protocol/openid-connect/logout?post_logout_redirect_uri=${kcPostLogoutRedirectUri}`,
       );
 
       window.location.href = url.href;
