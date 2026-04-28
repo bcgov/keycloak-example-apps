@@ -18,7 +18,7 @@ const initExpresss = async () => {
       cookie: {
         maxAge: THIRTY_DAYS,
         httpOnly: true,
-        secure: false,
+        secure: process.env.NODE_ENV === 'production',
       },
       secure: true,
       store: memoryStore,

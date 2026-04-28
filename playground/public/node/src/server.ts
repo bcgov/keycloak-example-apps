@@ -9,6 +9,7 @@ import * as dotenv from 'dotenv';
 import { SamlStrategy } from './strategy';
 import { formatXml } from './utils';
 import cookieParser from 'cookie-parser';
+import rateLimit from 'express-rate-limit';
 
 dotenv.config();
 const app = express();
@@ -29,6 +30,13 @@ passport.deserializeUser<Express.User>((user: any, done) => {
 
 const passportSamlStrategy = new SamlStrategy();
 
+const limiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 100, // max 100 requests per minute
+});
+
+app.use(limiter);
+
 app.use((req, res, next) => {
   console.log(`METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
 
@@ -43,9 +51,14 @@ app.use((req, res, next) => {
 
 app.use(
   session({
-    secret: 'secret',
+    secret: process.env.SESSION_SECRET ?? 'secret',
     resave: false,
     saveUninitialized: true,
+    cookie: {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production', 
+      sameSite: 'lax', 
+    },
   }),
 );
 
@@ -59,7 +72,7 @@ app.use(cookieParser());
 //passport.use('samlStrategy', samlStrategy);
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', req.header('origin'));
+  res.header('Access-Control-Allow-Origin', process.env.APP_URI);
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   res.header('Access-Control-Allow-Credentials', 'true');
 
