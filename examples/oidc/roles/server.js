@@ -20,6 +20,11 @@ app.use(
     secret: process.env.SSO_SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
+    cookie: {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+    },
     store,
   }),
 );

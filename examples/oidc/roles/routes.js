@@ -1,4 +1,5 @@
 import { passport, keycloakClient, tokenset } from './server.js';
+import rateLimit from 'express-rate-limit';
 
 const checkAuthenticated = (req, res, next) => {
   if (req?.session?.passport?.user) {
@@ -8,6 +9,13 @@ const checkAuthenticated = (req, res, next) => {
 };
 
 export const setRoutes = (router) => {
+  const limiter = rateLimit({
+    windowMs: 60 * 1000, // 1 minute
+    max: 100, // max 100 requests per minute
+  });
+  
+  router.use(limiter);
+  
   router.get('/auth/callback', (req, res, next) => {
     passport.authenticate('oidc', {
       successRedirect: '/home',
