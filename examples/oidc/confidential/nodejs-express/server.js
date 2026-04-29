@@ -12,18 +12,6 @@ dotenv.config();
 
 const app = express();
 
-app.set('view engine', 'ejs');
-
-app.use(express.json());
-app.use(
-  session({
-    secret: process.env.SSO_SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    store,
-  }),
-);
-
 app.use(express.urlencoded({ extended: false }));
 app.set('view engine', 'ejs');
 
@@ -42,8 +30,6 @@ app.use(
     store,
   }),
 );
-
-app.use(express.urlencoded({ extended: false }));
 
 const router = express.Router();
 
