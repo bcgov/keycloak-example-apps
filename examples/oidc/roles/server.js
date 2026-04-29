@@ -21,25 +21,10 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
+      maxAge: 3600000,
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
-    },
-    store,
-  }),
-);
-
-app.use(express.urlencoded({ extended: false }));
-app.set('view engine', 'ejs');
-
-app.use(express.json());
-app.use(
-  session({
-    secret: process.env.SSO_SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      maxAge: 3600000,
     },
     store,
   }),
