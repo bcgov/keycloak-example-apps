@@ -1,6 +1,5 @@
 import express from 'express';
 import passport from 'passport';
-import { Strategy } from 'passport-saml';
 import session from 'express-session';
 import fs from 'fs';
 import http from 'http';
@@ -91,7 +90,7 @@ app.get('/', (req, res) => {
 app.post('/login', (req, res) => {
   passportSamlStrategy.createStrategy({ ...req.body });
   res.cookie('samlFormInputs', { ...req.body }, { maxAge: 900000, httpOnly: true });
-  passport.authenticate(passportSamlStrategy.getStrategy(), {
+  passport.authenticate(passportSamlStrategy.getStrategy() as any, {
     failureFlash: true,
     successRedirect: '/',
     failureRedirect: '/login',
@@ -100,7 +99,7 @@ app.post('/login', (req, res) => {
 });
 
 app.post('/login/callback', (req: any, res, next) => {
-  passport.authenticate(passportSamlStrategy.getStrategy(), {
+  passport.authenticate(passportSamlStrategy.getStrategy() as any, {
     failureRedirect: '/login',
     successRedirect: '/',
     failureFlash: true,

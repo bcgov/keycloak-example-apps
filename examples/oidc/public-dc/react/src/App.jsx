@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Home from './pages/Home';
+import Home from './pages/Home/index.jsx';
 import { useState, useEffect, useCallback } from 'react';
 import { initializeKeycloak } from './services/keycloak';
 import { createContext } from 'react';

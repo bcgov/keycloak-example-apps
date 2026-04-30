@@ -1,4 +1,4 @@
-import { Strategy } from 'passport-saml/lib/passport-saml';
+import { Strategy } from '@node-saml/passport-saml';
 
 export type SamlStrategyConfig = {
   signOnUrl: string;
@@ -8,16 +8,18 @@ export type SamlStrategyConfig = {
 };
 
 export class SamlStrategy {
-  samlStrategy: any;
+  private samlStrategy!: Strategy;
 
   createStrategy(samlStrategyConfig: SamlStrategyConfig) {
     this.samlStrategy = new Strategy(
       {
         audience: samlStrategyConfig.entityId,
         issuer: samlStrategyConfig.entityId,
+        idpCert: samlStrategyConfig.x509Cert,
+        wantAssertionsSigned: false,
+        wantAuthnResponseSigned: true,
         callbackUrl: `${process.env.APP_URI}/login/callback`,
         entryPoint: samlStrategyConfig.signOnUrl,
-        cert: samlStrategyConfig.x509Cert,
         logoutUrl: samlStrategyConfig.logoutUrl,
         logoutCallbackUrl: `${process.env.APP_URI}/logout/callback`,
         signatureAlgorithm: 'sha256',
@@ -25,6 +27,9 @@ export class SamlStrategy {
       },
       (profile: any, done: any) => {
         console.log('passport.use() profile: %s \n', JSON.stringify(profile));
+        return done(null, profile);
+      },
+      (profile: any, done: any) => {
         return done(null, profile);
       },
     );

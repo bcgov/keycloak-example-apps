@@ -2,26 +2,23 @@
   "name": "public-react-example",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
-    "keycloak-js": "^26.0.2",
-    "moment": "^2.29.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.4.2",
-    "react-scripts": "5.0.1"
+    "keycloak-js": "^26.2.4",
+    "moment": "^2.30.1",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "react-router-dom": "^7.14.2"
   },
   "scripts": {
-    "start-https": "HTTPS=true SSL_CRT_FILE=localhost.crt SSL_KEY_FILE=localhost.key react-scripts start",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start-https": "SSL_CRT_FILE=localhost.crt SSL_KEY_FILE=localhost.key vite --https",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.1",
+    "vite": "^8.0.10"
   },
   "browserslist": {
     "production": [
@@ -34,6 +31,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {}
+  }
 }
