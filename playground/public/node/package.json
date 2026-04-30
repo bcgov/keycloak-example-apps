@@ -3,36 +3,34 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "npx tsc && cpx 'src/views/**' 'dist/views'",
+    "build": "npx tsc && yarn run copy-assets",
     "start": "node dist/server.js",
-    "copy-assets": "cp src/*.pem dist && cp -r src/views dist",
-    "dev": " yarn run copy-assets && concurrently \"npx tsc --watch\" \"nodemon -q dist/server.js\"",
+    "copy-assets": "cp -r src/views dist",
+    "dev": "yarn run copy-assets && concurrently \"npx tsc --watch\" \"nodemon -q dist/server.js\"",
     "local": "nodemon src/server.ts"
   },
   "dependencies": {
-    "body-parser": "^1.20.2",
-    "cookie": "^0.5.0",
-    "cookie-parser": "^1.4.6",
-    "cpx": "^1.5.0",
-    "dotenv": "^16.0.3",
-    "ejs": "^3.1.8",
+    "@node-saml/passport-saml": "^5.1.0",
+    "body-parser": "^1.20.5",
+    "cookie": "^0.7.2",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.4.2",
+    "ejs": "^3.1.10",
     "express": "^5.2.1",
     "express-rate-limit": "^8.4.1",
     "express-session": "^1.19.0",
-    "https": "^1.0.0",
     "passport": "^0.7.0",
-    "passport-saml": "^3.2.4",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
-    "@types/cookie-parser": "^1.4.7",
+    "@types/cookie-parser": "^1.4.10",
     "@types/express": "^5.0.6",
     "@types/express-session": "^1.19.0",
-    "@types/node": "^18.14.6",
+    "@types/node": "^25.6.0",
     "@types/passport": "^1.0.17",
-    "concurrently": "^7.6.0",
-    "nodemon": "^2.0.21",
-    "typescript": "^4.9.5"
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.14",
+    "typescript": "^5.9.3"
   },
   "engines": {
     "npm": ">=8.0.0",

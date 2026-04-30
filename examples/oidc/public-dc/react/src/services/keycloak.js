@@ -1,15 +1,15 @@
 import Keycloak from 'keycloak-js';
 
 const _kc = new Keycloak({
-  url: process.env.REACT_APP_SSO_AUTH_SERVER_URL,
-  realm: process.env.REACT_APP_SSO_REALM,
-  clientId: process.env.REACT_APP_SSO_CLIENT_ID,
+  url: import.meta.env.REACT_APP_SSO_AUTH_SERVER_URL,
+  realm: import.meta.env.REACT_APP_SSO_REALM,
+  clientId: import.meta.env.REACT_APP_SSO_CLIENT_ID,
 });
 
 const loginOptions = {
-  redirectUri: process.env.REACT_APP_SSO_REDIRECT_URI,
+  redirectUri: import.meta.env.REACT_APP_SSO_REDIRECT_URI,
   idpHint: '',
-  pres_req_conf_id: process.env.REACT_APP_PRES_REQ_CONF_ID,
+  pres_req_conf_id: import.meta.env.REACT_APP_PRES_REQ_CONF_ID,
 };
 
 export const initializeKeycloak = async () => {

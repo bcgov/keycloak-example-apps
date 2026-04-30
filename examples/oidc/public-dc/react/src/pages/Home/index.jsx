@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { AuthenticationContext } from '../../App';
-import * as moment from 'moment';
+import { AuthenticationContext } from '../../App.jsx';
+import moment from 'moment';
 
 function Home() {
   const keycloak = useContext(AuthenticationContext);
