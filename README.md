@@ -41,4 +41,4 @@ The `./playground/public-spa` folder contains the OIDC Playground, a Node-Expres
 
 ### Documentation
 
-Visit our [technical documentation page](https://bcgov.github.io/sso-docs/) for more information
+Visit our [technical documentation page](https://bcgov.github.io/sso-docs/) for more informationnnn
